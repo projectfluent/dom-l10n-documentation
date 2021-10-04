@@ -3,4 +3,4 @@ authors = ["Erik Nordin"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Mozilla DOM L10n"
+title = "Fluent DOML10n"

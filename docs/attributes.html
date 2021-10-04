@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>L10n Args - Fluent DOML10n</title>
+        <title>Attributes - Fluent DOML10n</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html" class="active"><strong aria-hidden="true">3.</strong> L10n Args</a></li><li class="chapter-item expanded "><a href="attributes.html"><strong aria-hidden="true">4.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">5.</strong> DOM Overlays</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">6.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">6.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">6.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">7.</strong> Setting up a project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo.html"><strong aria-hidden="true">7.1.</strong> TODO</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html"><strong aria-hidden="true">3.</strong> L10n Args</a></li><li class="chapter-item expanded "><a href="attributes.html" class="active"><strong aria-hidden="true">4.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">5.</strong> DOM Overlays</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">6.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">6.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">6.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">7.</strong> Setting up a project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo.html"><strong aria-hidden="true">7.1.</strong> TODO</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,27 +134,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="l10n-args"><a class="header" href="#l10n-args">L10n Args</a></h1>
-<p>The <code>data-l10n-args</code> provides a way to supply arguments to your localized content.</p>
-<p>To build on the <code>data-l10n-id</code> example of a welcome message, perhaps we want to be able to provide a name of the person we are welcoming. To do this, we will need to add a <code>data-l10n-args</code> tag in addition to the <code>data-l10n-id</code>.</p>
-<pre><code class="language-html">&lt;p id='welcome'
-  data-l10n-id='hello'
-  data-l10n-args='{&quot;name&quot;: &quot;world&quot;}'&gt;
-&lt;/p&gt;
-</code></pre>
-<p>And in the Fluent file, we will be able to use the argument within our localized content:</p>
-<pre><code># $name - The name of the person to welcome.
-hello = Hello {$name}
-</code></pre>
+                        <h1 id="attributes"><a class="header" href="#attributes">Attributes</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="l10n-id.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="l10n-args.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="attributes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="dom-overlays.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -163,10 +152,10 @@ hello = Hello {$name}
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="l10n-id.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="l10n-args.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="attributes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="dom-overlays.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Fluent DOML10n</title>
-        <meta name="robots" content="noindex" />
+        <title>DOM Overlays - Fluent DOML10n</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -76,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html"><strong aria-hidden="true">3.</strong> L10n Args</a></li><li class="chapter-item expanded "><a href="attributes.html"><strong aria-hidden="true">4.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">5.</strong> DOM Overlays</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">6.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">6.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">6.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">7.</strong> Setting up a project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo.html"><strong aria-hidden="true">7.1.</strong> TODO</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html"><strong aria-hidden="true">3.</strong> L10n Args</a></li><li class="chapter-item expanded "><a href="attributes.html"><strong aria-hidden="true">4.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="dom-overlays.html" class="active"><strong aria-hidden="true">5.</strong> DOM Overlays</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">6.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">6.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">6.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">7.</strong> Setting up a project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo.html"><strong aria-hidden="true">7.1.</strong> TODO</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,44 +134,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="overview"><a class="header" href="#overview">Overview</a></h1>
-<p>This documentation is intended to be a starting-point for anyone looking to understand and learn to use Fluent DOM.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="l10n-id"><a class="header" href="#l10n-id">L10n ID</a></h1>
-<p>The L10n ID is an identifier that you assign to a DOM element to be localized.</p>
-<p>For example, a welcome message may have a regular <code>id</code> of <code>welcome</code> so that you can query for it in JavaScript code and a <code>data-l10n-id</code> of <code>hello</code>.</p>
-<pre><code class="language-html">&lt;p id='welcome'
-  data-l10n-id='hello'
-&lt;/p&gt;
-</code></pre>
-<p>You will likely have multiple Fluent (<code>.ftl</code>) files for different locales that specify localized content for the <code>hello</code> <code>data-l10n-id</code>.</p>
-<p>For example, for the <code>en</code> locale you might have:</p>
-<pre><code>hello = Hello
-</code></pre>
-<p>And for the <code>es</code> locale you might have:</p>
-<pre><code>hello = Hola
-</code></pre>
-<p>The <code>data-l10n-id</code> is like a contract between the element and its localized content.</p>
-<p>This means that if the localized content changes, then the <code>data-l10n-id</code> must also change. For example, if I want my <code>en</code> message to read <code>Hello there</code> instead of just <code>Hello</code>, I will also need to change the <code>data-l10n-id</code>.</p>
-<pre><code class="language-html">&lt;p id='welcome'
-  data-l10n-id='hello-there'
-&lt;/p&gt;
-</code></pre>
-<pre><code>hello-there = Hello there
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="l10n-args"><a class="header" href="#l10n-args">L10n Args</a></h1>
-<p>The <code>data-l10n-args</code> provides a way to supply arguments to your localized content.</p>
-<p>To build on the <code>data-l10n-id</code> example of a welcome message, perhaps we want to be able to provide a name of the person we are welcoming. To do this, we will need to add a <code>data-l10n-args</code> tag in addition to the <code>data-l10n-id</code>.</p>
-<pre><code class="language-html">&lt;p id='welcome'
-  data-l10n-id='hello'
-  data-l10n-args='{&quot;name&quot;: &quot;world&quot;}'&gt;
-&lt;/p&gt;
-</code></pre>
-<p>And in the Fluent file, we will be able to use the argument within our localized content:</p>
-<pre><code># $name - The name of the person to welcome.
-hello = Hello {$name}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="attributes"><a class="header" href="#attributes">Attributes</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="dom-overlays"><a class="header" href="#dom-overlays">DOM Overlays</a></h1>
+                        <h1 id="dom-overlays"><a class="header" href="#dom-overlays">DOM Overlays</a></h1>
 <p><em>At the moment, this page is taken verbatim from <a href="https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays">https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays</a></em></p>
 <p>When localizing an HTML document you're likely to encounter two scenarios where the DOM elements may appear in translations:</p>
 <ul>
@@ -253,157 +215,29 @@ hello = Hello {$name}
 <p>There's no way to allow additional elements to be defined in translations without putting them in the source HTML as functional elements.</p>
 </li>
 </ol>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="fluentjs"><a class="header" href="#fluentjs">Fluent.js</a></h1>
-<p>Fluent.js is a JavaScript implementation of Project Fluent, a localization framework designed to unleash the expressive power of the natural language.</p>
-<p>Fluent.js allows interaction with <a href="./l10n-id.html"><code>data-l10n-id</code></a> and <a href="./l10n-args.html"><code>data-l10n-args</code></a> through the <a href="./dom-localization.html"><code>DOMLocalization</code></a> class, which is derived from the <a href="localization.html"><code>Localization</code></a> base class.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="localization"><a class="header" href="#localization">Localization</a></h1>
-<p>The <code>Localization</code> class is a central high-level API for using Fluent.</p>
-<h2 id="functionality"><a class="header" href="#functionality">Functionality</a></h2>
-<hr />
-<h3 id="constructorresourceids-generatebundles"><a class="header" href="#constructorresourceids-generatebundles"><code>constructor(resourceIds, generateBundles)</code></a></h3>
-<blockquote>
-<p>Creates a new <code>Localization</code> object given a list of <code>resourceIDs</code> and a <code>generateBundles</code> function that returns a generator over <code>FluentBundles</code> when given a list of <code>resourceIDs</code>.</p>
-<p>The <code>generateBundles</code> function's generator behavior acts as a fallbacking strategy for the availability of fluent resources.</p>
-<p>When localizing content in the ideal scenario, the <code>generateBundles</code> function will only ever have to produce one bundle. This would mean that the first bundle had translations for every requested localization.</p>
-<p>If the current bundle in unable to produce a translation, then the generator's next bundle will be retrieved in an attempt to find a translation, and so on.</p>
-</blockquote>
-<hr />
-<h3 id="addresourceidsresourceids-eager--false"><a class="header" href="#addresourceidsresourceids-eager--false"><code>addResourceIds(resourceIds, eager = false)</code></a></h3>
-<blockquote>
-<p>Adds resource IDs to this localization object.
-Accepts a boolean for whether to eagerly apply the changes
-with a default value of <code>false</code>.</p>
-</blockquote>
-<hr />
-<h3 id="removeresourceidsresourceids"><a class="header" href="#removeresourceidsresourceids"><code>removeResourceIds(resourceIds)</code></a></h3>
-<blockquote>
-<p>Removes resource IDs from this localization object.
-This operation is never eager.</p>
-</blockquote>
-<hr />
-<h3 id="formatvalueskeys"><a class="header" href="#formatvalueskeys"><code>formatValues(keys)</code></a></h3>
-<blockquote>
-<p>Retrives translations corresponding to the passed keys.
-Keys must be <code>{id, args}</code> objects.</p>
-<p>If all <code>keys</code> have available translations within the current <code>FluentBundle</code>
-then no fallbacking will occur. If a translation is missing, the
-localization object will retrieve the next bundle from the <code>generateBundles</code> function and so on.</p>
-<pre><code class="language-JavaScript">docL10n.formatValues([
-  {id: 'hello', args: { who: 'Mary' }},
-  {id: 'hello', args: { who: 'John' }},
-  {id: 'welcome'}
-]).then(console.log)
-</code></pre>
-</blockquote>
-<hr />
-<h3 id="formatvalueid-args"><a class="header" href="#formatvalueid-args"><code>formatValue(id, args)</code></a></h3>
-<blockquote>
-<blockquote>
-<p><strong><em>Note:</em></strong></p>
-<p><em>Use this sparingly for one-off messages which do not need to be retranslated when the user change their language preferences, e.g. in notifications.</em></p>
-</blockquote>
-<p>Retrieves the translation corresponding to the <code>id</code>.</p>
-<p>If passed, <code>args</code> is a simple hash object with a list of variables that will be interpolated in the value of the translation.</p>
-<p>Returns a promise resolving to the translation string.</p>
-<pre><code class="language-JavaScript">docL10n.formatValue(
-  'hello', { who: 'world' }
-).then(console.log);
-</code></pre>
-</blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="domlocalization"><a class="header" href="#domlocalization">DOMLocalization</a></h1>
-<p>The <code>DOMLocalization</code> class is an extension of the <a href="./localization.html"><code>Localization</code></a> class and is responsible for fetching resources and formatting translations for DOM elements.</p>
-<h2 id="functionality-1"><a class="header" href="#functionality-1">Functionality</a></h2>
-<hr />
-<blockquote>
-<p>Includes all the functionality from <a href="./localization.html"><code>Localization</code></a></p>
-</blockquote>
-<hr />
-<h3 id="constructorresourceids-generatebundles-1"><a class="header" href="#constructorresourceids-generatebundles-1"><code>constructor(resourceIds, generateBundles)</code></a></h3>
-<blockquote>
-<p>Creates a new <code>DOMLocalization</code> object given a list of <code>resourceIDs</code> and a <code>generateBundles</code> function that returns a generator over <code>FluentBundles</code> when given a list of <code>resourceIDs</code>.</p>
-<p>The <code>generateBundles</code> function's generator behavior acts as a fallbacking strategy for the availability of fluent resources.</p>
-<p>When localizing content in the ideal scenario, the <code>generateBundles</code> function will only ever have to produce one bundle. This would mean that the first bundle had translations for every requested localization.</p>
-<p>If the current bundle in unable to produce a translation, then the generator's next bundle will be retrieved in an attempt to find a translation, and so on.</p>
-</blockquote>
-<hr />
-<h3 id="setattributeselement-id-args"><a class="header" href="#setattributeselement-id-args"><code>setAttributes(element, id, args)</code></a></h3>
-<blockquote>
-<p>Set the <a href="./l10n-id.html"><code>data-l10n-id</code></a> and <a href="./l10n-args.html"><code>data-l10n-args</code></a> attributes on a DOM <code>element</code>. <code>DOMLocalization</code> makes use of mutation observers to detect change to <code>data-l10n-*</code> attributes and translate elements asynchronously. <code>setAttributes</code> is a convenience method which allows to translate DOM elements declaratively.</p>
-<p>You should always prefer to use <a href="./l10n-id.html"><code>data-l10n-id</code></a> on elements (statically in HTML or dynamically via <code>setAttributes</code>) over manually retrieving translations with <code>format</code>.  The use of attributes ensures that the elements can be retranslated when the user changes their language preferences.</p>
-<pre><code class="language-JavaScript">localization.setAttributes(
-  document.querySelector('#welcome'), 'hello', { who: 'world' }
-);
-</code></pre>
-<p>This will set the following attributes on the <code>#welcome</code> element. The MutationObserver will pick up this change and will localize the element asynchronously.</p>
-<pre><code class="language-html">&lt;p id='welcome'
-  data-l10n-id='hello'
-  data-l10n-args='{&quot;who&quot;: &quot;world&quot;}'&gt;
-&lt;/p&gt;
-</code></pre>
-</blockquote>
-<hr />
-<h3 id="getattributeselement"><a class="header" href="#getattributeselement"><code>getAttributes(element)</code></a></h3>
-<blockquote>
-<p>Get the <code>data-l10n-*</code> attributes from a DOM <code>element</code>.</p>
-<pre><code class="language-JavaScript">localization.setAttributes(
-  document.querySelector('#welcome'), 'hello', { who: 'world' }
-)
-localization.getAttributes(
-  document.querySelector('#welcome')
-);
-// -&gt; { id: 'hello', args: { who: 'world' } }
-</code></pre>
-</blockquote>
-<hr />
-<h3 id="connectrootroot"><a class="header" href="#connectrootroot"><code>connectRoot(root)</code></a></h3>
-<blockquote>
-<p>Add new <code>root</code> to the list of roots managed by this <code>DOMLocalization</code>.</p>
-<p>Additionally, if this <code>DOMLocalization</code> has an observer, start observing the new <code>root</code> in order to translate mutations in it.</p>
-<p>The new <code>root</code> may not overlap with an existing root.</p>
-</blockquote>
-<hr />
-<h3 id="disconnectrootroot"><a class="header" href="#disconnectrootroot"><code>disconnectRoot(root)</code></a></h3>
-<blockquote>
-<p>Remove <code>root</code> from the list of roots managed by this <code>DOMLocalization</code>.</p>
-<p>Additionally, if this <code>DOMLocalization</code> has an observer, stop observing
-<code>root</code>.</p>
-<p>Returns <code>true</code> if the root was the last one managed by this
-<code>DOMLocalization</code>.</p>
-</blockquote>
-<hr />
-<h3 id="translateroots"><a class="header" href="#translateroots"><code>translateRoots()</code></a></h3>
-<blockquote>
-<p>Translate all roots associated with this <code>DOMLocalization</code>.</p>
-</blockquote>
-<hr />
-<h3 id="translatefragmentfragment"><a class="header" href="#translatefragmentfragment"><code>translateFragment(fragment)</code></a></h3>
-<blockquote>
-<p>Translate a DOM element or fragment asynchronously using this
-<code>DOMLocalization</code> object.</p>
-<p>Manually trigger the translation (or re-translation) of a DOM fragment.
-Use the <code>data-l10n-id</code> and <code>data-l10n-args</code> attributes to mark up the DOM with information about which translations to use.</p>
-<p>Returns a <code>Promise</code> that gets resolved once the translation is complete.</p>
-</blockquote>
-<hr />
-<h3 id="translateelementselements"><a class="header" href="#translateelementselements"><code>translateElements(elements)</code></a></h3>
-<blockquote>
-<p>Translate a list of DOM elements asynchronously using this <code>DOMLocalization</code> object.</p>
-<p>Manually trigger the translation (or re-translation) of a list of elements. Use the <code>data-l10n-id</code> and <code>data-l10n-args</code> attributes to mark up the DOM with information about which translations to use.</p>
-<p>Returns a <code>Promise</code> that gets resolved once the translation is complete.</p>
-</blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="setting-up-a-project"><a class="header" href="#setting-up-a-project">Setting up a project</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="todo"><a class="header" href="#todo">TODO</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="attributes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="javascript.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="attributes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="javascript.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
@@ -419,10 +253,5 @@ Use the <code>data-l10n-id</code> and <code>data-l10n-args</code> attributes to 
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        <script type="text/javascript">
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
     </body>
 </html>
