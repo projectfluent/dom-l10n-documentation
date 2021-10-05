@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html"><strong aria-hidden="true">3.</strong> L10n Args</a></li><li class="chapter-item expanded "><a href="attributes.html"><strong aria-hidden="true">4.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">5.</strong> DOM Overlays</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">6.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">6.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">6.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">7.</strong> Setting up a project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo.html"><strong aria-hidden="true">7.1.</strong> TODO</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html"><strong aria-hidden="true">3.</strong> L10n Args</a></li><li class="chapter-item expanded "><a href="attributes.html"><strong aria-hidden="true">4.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">5.</strong> DOM Overlays</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">6.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">6.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">6.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">7.</strong> Getting started with Fluent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="npm.html"><strong aria-hidden="true">7.1.</strong> Installing NPM</a></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">7.2.</strong> Setting up a project</a></li><li class="chapter-item expanded "><a href="fluent-files.html"><strong aria-hidden="true">7.3.</strong> Adding Fluent files</a></li><li class="chapter-item expanded "><a href="using-fluent.html"><strong aria-hidden="true">7.4.</strong> Using Fluent</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -172,6 +172,7 @@
 hello = Hello {$name}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="attributes"><a class="header" href="#attributes">Attributes</a></h1>
+<p>TODO</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dom-overlays"><a class="header" href="#dom-overlays">DOM Overlays</a></h1>
 <p><em>At the moment, this page is taken verbatim from <a href="https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays">https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays</a></em></p>
 <p>When localizing an HTML document you're likely to encounter two scenarios where the DOM elements may appear in translations:</p>
@@ -391,8 +392,277 @@ Use the <code>data-l10n-id</code> and <code>data-l10n-args</code> attributes to 
 <p>Manually trigger the translation (or re-translation) of a list of elements. Use the <code>data-l10n-id</code> and <code>data-l10n-args</code> attributes to mark up the DOM with information about which translations to use.</p>
 <p>Returns a <code>Promise</code> that gets resolved once the translation is complete.</p>
 </blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started-with-fluent"><a class="header" href="#getting-started-with-fluent">Getting started with Fluent</a></h1>
+<p>This is a small, step-by-step tutorial to show a simple path to get up and running using Fluent in a web project built from scratch.</p>
+<p>We will be using <a href="https://www.npmjs.com/">Node Package Manager (npm)</a> and <a href="https://parceljs.org/">Parcel</a> in this tutorial.</p>
+<p>If you already have <code>npm</code> set up, you can skip to the <a href="./project-setup.html">Project Setup</a> section.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-npm"><a class="header" href="#installing-npm">Installing NPM</a></h1>
+<p>To install <a href="https://www.npmjs.com/">Node Package Manager (npm)</a>, we will be using <a href="https://github.com/nvm-sh/nvm#installing-and-updating">Node Version Manager (nvm)</a>.</p>
+<p>Please navigate to the NVM repository and follow the instructions for the <a href="https://github.com/nvm-sh/nvm#install--update-script">Install &amp; Upate Script</a> section.</p>
+<p>Note that their examples pipe to <code>bash</code>. If you are using another shell, such as <code>zsh</code>, you will need to change this to match your desired shell.</p>
+<p>After running their install script, you should be able to close and re-open your terminal, then type <code>nvm</code> to verify that it is installed.</p>
+<pre><code>nvm --version
+</code></pre>
+<blockquote>
+<pre><code>0.38.0
+</code></pre>
+</blockquote>
+<p>Next, we will install <code>npm</code> via</p>
+<pre><code>nvm install node
+</code></pre>
+<p>And then we can verify that <code>npm</code> is installed via</p>
+<pre><code>npm --version
+</code></pre>
+<blockquote>
+<pre><code>7.24.0
+</code></pre>
+</blockquote>
+<p>Next we will build a basic skeleton of a project for using Fluent DOM.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="setting-up-a-project"><a class="header" href="#setting-up-a-project">Setting up a project</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="todo"><a class="header" href="#todo">TODO</a></h1>
+<p>This tutorial will walk you through setting up a basic project with <a href="https://www.npmjs.com/">Node Package Manager (npm)</a> and <a href="https://parceljs.org/">Parcel</a> to use Fluent DOM.</p>
+<p>If you don't have <code>npm</code> installed, please refer to the <a href="./npm.html">previous section</a> on installing <code>npm</code>.</p>
+<hr />
+<p>First let's create a new directory called <code>fluent-playground</code>.</p>
+<pre><code>mkdir fluent-playground
+cd fluent-playground
+</code></pre>
+<p>Next we will create a new project using <code>npm</code></p>
+<pre><code>npm init
+</code></pre>
+<p>You should now have a <code>package.json</code> file that looks something like this:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;fluent-playground&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+}
+</code></pre>
+<hr />
+<p>Next we will need to add our <code>src</code> directory and some basic <code>index.html</code> and <code>index.js</code> files.</p>
+<pre><code>mkdir src
+touch src/index.html
+touch src/index.js
+</code></pre>
+<blockquote>
+<pre><code>fluent-playground
+├── src
+│  ├── index.html
+│  └── index.js
+└── package.json
+</code></pre>
+</blockquote>
+<p>Populate your <code>index.html</code> with some minimal content:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;script defer src=&quot;index.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 id=&quot;welcome&quot;&gt;Hello&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr />
+<p>Now we need to add the Parcel bundler to run our project.</p>
+<pre><code>npm install parcel-bundler
+</code></pre>
+<p>You should now see that <code>parcel-bundler</code> has been added as a dependency in <code>package.json</code></p>
+<pre><code class="language-json">&quot;dependencies&quot;: {
+  &quot;parcel-bundler&quot;: &quot;^1.12.5&quot;
+}
+</code></pre>
+<hr />
+<p>We also will need to import the <code>regenerator-runtime</code> for Parcel to work correctly, and also specify a <code>browserlist</code> in <code>package.json</code>.</p>
+<p>Go ahead and add this line to <code>index.js</code></p>
+<pre><code class="language-JavaScript">import &quot;regenerator-runtime/runtime&quot;;
+</code></pre>
+<p>And add these lines to <code>package.json</code></p>
+<pre><code class="language-json">&quot;browserslist&quot;: [
+  &quot;since 2019-01&quot;
+],
+</code></pre>
+<hr />
+<p>Next we need to tell <code>npm</code> to use <code>Parcel</code> when it starts. We will replace the following line in <code>package.json</code></p>
+<pre><code class="language-json">&quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+</code></pre>
+<p>with this line instead:</p>
+<pre><code class="language-json">&quot;start&quot;: &quot;parcel src/index.html&quot;
+</code></pre>
+<p>Verify that everything is working by running</p>
+<pre><code>npm start
+</code></pre>
+<p>which should serve your html page on <code>localhost</code>. You should see the <code>&lt;h1&gt;</code> element that says <strong>Hello</strong>.</p>
+<hr />
+<p>In the nexrt section we will create some Fluent (<code>.ftl</code>) files and cover how to get parcel to add them as assets to your project.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="adding-fluent-files"><a class="header" href="#adding-fluent-files">Adding fluent files</a></h1>
+<p>This tutorial will walk you through getting Parcel to add Fluent (<code>.ftl</code>) files as assets to your project.</p>
+<p>If you don't have a working Parcel project, please refer to the <a href="./project-setup.html">previous section</a>.</p>
+<hr />
+<p>Now that we have a working Parcel setup, we need to add some fluent files. We will store the files in <code>src</code>, under an <code>assets</code>. Within <code>assets</code> we will have <code>localization/{locale}/main.ftl</code>.</p>
+<p>In this tutorial, we will only create files for the <code>en-US</code> and <code>es-MX</code> locales.</p>
+<pre><code>mkdir -p src/assets/localization/en-US
+touch src/assets/localization/en-US/main.ftl
+mkdir src/assets/localization/es-MX
+touch src/assets/localization/es-MX/main.ftl
+</code></pre>
+<blockquote>
+<pre><code>fluent-playground
+├── src
+│  ├── assets
+│  │  └── localization
+│  │     ├── en-US
+│  │     │  └── main.ftl
+│  │     └── es-MX
+│  │        └── main.ftl
+│  ├── index.html
+│  └── index.js
+└── package.json
+</code></pre>
+</blockquote>
+<p>Then we will populate our <code>main.ftl</code> files with our localzed message using <code>hello</code> as our <code>data-l10n-id</code>.</p>
+<blockquote>
+<p><strong><em>src/assets/localization/en-US/main.ftl</em></strong></p>
+<pre><code>hello = Hello!
+</code></pre>
+</blockquote>
+<blockquote>
+<p><strong><em>src/assets/localization/es-MX/main.ftl</em></strong></p>
+<pre><code>hello = ¡Hola!
+</code></pre>
+</blockquote>
+<hr />
+<p>Next we will need to install a Parcel plugin to copy over our assets to our project directory and verify that it is added to your <code>package.json</code>.</p>
+<pre><code>npm install parcel-plugin-asset-copier
+</code></pre>
+<blockquote>
+<pre><code class="language-json">&quot;dependencies&quot;: {
+  &quot;parcel-bundler&quot;: &quot;^1.12.5&quot;,
+  &quot;parcel-plugin-asset-copier&quot;: &quot;^1.1.0&quot;
+}
+</code></pre>
+</blockquote>
+<p>Finally, we need to add the path to our assets to the <code>package.json</code> by including the following line:</p>
+<pre><code class="language-json">&quot;assetsPath&quot;: &quot;./src/assets&quot;,
+</code></pre>
+<hr />
+<p>Now, when we run <code>npm start</code>, Parcel should build our <code>dist</code> directory with our assets included.</p>
+<pre><code>.
+├── dist
+│  ├── localization
+│  │  ├── en-US
+│  │  │  └── main.ftl
+│  │  └── es-MX
+│  │     └── main.ftl
+│  ├── index.html
+│  ├── src.e31bb0bc.js
+│  └── src.e31bb0bc.js.map
+...
+</code></pre>
+<hr />
+<p>In the next section we will cover how to use Fluent DOM from JavaScript to localize our message.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="using-fluent"><a class="header" href="#using-fluent">Using Fluent</a></h1>
+<p>This tutorial will show how to use fluent to localize the message in our <code>&lt;h1&gt;</code> element.</p>
+<p>If you don't have a Parcel project set up with fluent files, please refer to the previous sections.</p>
+<hr />
+<p>First thing's first, we need to add and import our Fluent dependencies.</p>
+<p>For this tutorial we will install <code>fluent/bundle</code> and <code>fluent/dom</code> via the following command:</p>
+<pre><code>npm install @fluent/bundle @fluent/dom
+</code></pre>
+<p>And verify that the dependencies are added to your <code>package.json</code>.</p>
+<pre><code class="language-json">&quot;dependencies&quot;: {
+  &quot;@fluent/bundle&quot;: &quot;^0.17.0&quot;,
+  &quot;@fluent/dom&quot;: &quot;^0.8.0&quot;,
+  ...
+}
+</code></pre>
+<p>Then we'll want to import some items from these dependencies in <code>index.js</code>.</p>
+<pre><code class="language-JavaScript">import { DOMLocalization } from &quot;@fluent/dom&quot;;
+import { FluentBundle, FluentResource } from &quot;@fluent/bundle&quot;;
+</code></pre>
+<hr />
+<p>Next, we need to add the metadata to the HTML regarding which languages we have available.</p>
+<p>Add the following lines to the <code>&lt;head&gt;</code> section of your <code>index.html</code> file.</p>
+<pre><code class="language-html">    &lt;meta name=&quot;defaultLanguage&quot; content=&quot;en-US&quot;&gt;
+    &lt;meta name=&quot;availableLanguages&quot; content=&quot;en-US, es-MX&quot;&gt;
+</code></pre>
+<hr />
+<p>Now, we're going to add a JavaScript function to <code>index.js</code> to retrieve this meta data.</p>
+<pre><code class="language-JavaScript">function getMeta(elem) {
+  return {
+    available: elem.querySelector('meta[name=&quot;availableLanguages&quot;]')
+      .getAttribute(&quot;content&quot;)
+      .split(&quot;,&quot;).map(s =&gt; s.trim()),
+    default: elem.querySelector('meta[name=&quot;defaultLanguage&quot;]')
+      .getAttribute(&quot;content&quot;),
+  };
+}
+</code></pre>
+<p>We can invoke this in the following ways to retrieve either the <code>default</code> language or the <code>available</code> languages:</p>
+<pre><code class="language-JavaScript">getMeta(document.head).default;
+getMeta(document.head).available;
+</code></pre>
+<hr />
+<p>Now that we're able to retrieve the metadata for which locales are supported, we need a way to resolve the paths to the Fluent resources that we created for those locales.</p>
+<p>We're going to add the following line to the <code>&lt;head&gt;</code> section of the <code>index.html</code> file:</p>
+<pre><code class="language-HTML">&lt;link name=&quot;localization&quot; content=&quot;./localization/{locale}/main.ftl&quot; /&gt;
+</code></pre>
+<p>We will now need an asynchronous JavaScript function to fetch a <code>FluentResource</code> from a given path, replacing the <code>{locale}</code> template with an actual given locale.</p>
+<pre><code class="language-JavaScript">async function fetchResource(locale, resourceId) {
+  const url = resourceId.replace(&quot;{locale}&quot;, locale);
+  const response = await fetch(url);
+  const text = await response.text();
+  return new FluentResource(text);
+}
+</code></pre>
+<p>Once we're able to fetch a resource, we'll want to be able to turn that resource into a <code>FluentBundle</code>.</p>
+<pre><code class="language-JavaScript">async function generateBundle(locale, resourceId) {
+    let resource = await fetchResource(locale, resourceId);
+    let bundle = new FluentBundle(locale);
+    let errors = bundle.addResource(resource);
+    if (errors.length) {
+      // Syntax errors are per-message and don't break the whole resource
+    }
+    return bundle;
+}
+</code></pre>
+<p>Finally, we'll want a top-level <code>generateBundles</code> function (remember, this is what <code>DOMLocalization</code> is initialized with) to provide a generator over the available fluent bundles for our supported locales.</p>
+<pre><code class="language-JavaScript">async function* generateBundles(resourceIds) {
+  const defaultLanguage = getMeta(document.head).default;
+  yield await generateBundle(defaultLanguage, resourceIds[0]);
+
+  const availableLanguages = getMeta(document.head).available;
+  for (const locale of availableLanguages) {
+    yield await generateBundle(locale, resourceIds[0]);
+  }
+}
+</code></pre>
+<p>This function will first grab the bundle for the default language, and then go through the list of available languages. Yes, there is a redundancy here where the default language is also in the list of available languages. For simplicity, we'll leave it this way.</p>
+<hr />
+<p>Out final steps are to grab the translatable <code>&lt;h1&gt;</code> element, our template path for the <code>resourceIDs</code>, and construct our <code>DOMLocalization</code> object to perform the translations.</p>
+<pre><code class="language-JavaScript">const welcome = document.getElementById(&quot;welcome&quot;);
+console.log(welcome);
+
+const resources = document.querySelector(&quot;link[name=localization]&quot;);
+const resourcePathTemplate = resources.attributes.content.nodeValue;
+console.log(resourcePathTemplate);
+
+const l10n = new DOMLocalization([resourcePathTemplate], generateBundles);
+l10n.connectRoot(document.documentElement);
+l10n.setAttributes(welcome, &quot;hello&quot;);
+l10n.translateRoots();
+</code></pre>
+<p>With this final step, you should be able to invoke</p>
+<pre><code>npm start
+</code></pre>
+<p>and now see <strong>Hello!</strong> (with the exclamation point, as specified in our Fluent file for <code>en-US</code>). You should also be able to change the default language in <code>index.html</code> to <code>es-MX</code> and see <strong>¡Hola!</strong>.</p>
+<hr />
+<p>Congratulations! You've just set up a project from scratch that uses Fluent DOM to localize HTML elements.</p>
 
                     </main>
 
