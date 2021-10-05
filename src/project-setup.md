@@ -85,15 +85,13 @@ You should now see that `parcel-bundler` has been added as a dependency in `pack
 
 ---
 
-We also will need to import the `regenerator-runtime` for Parcel to work correctly, and also specify a `browserlist` in `package.json`.
-
-Go ahead and add this line to `index.js`
+We need to add this line to `index.js`
 
 ```JavaScript
 import "regenerator-runtime/runtime";
 ```
 
-And add these lines to `package.json`
+And then add these lines to `package.json`
 
 ```json
 "browserslist": [
@@ -103,17 +101,17 @@ And add these lines to `package.json`
 
 ---
 
-Next we need to tell `npm` to use `Parcel` when it starts. We will replace the following line in `package.json`
+Next we need to tell `npm` to use `Parcel` when it starts by adding the following line to the `scripts` section in `package.json`.
 
 ```json
-"test": "echo \"Error: no test specified\" && exit 1"
+"start": "parcel src/index.html",
 ```
-
-with this line instead:
-
-```json
-"start": "parcel src/index.html"
-```
+> ```json
+> "scripts": {
+>   "start": "parcel src/index.html",
+>   "test": "echo \"Error: no test specified\" && exit 1"
+> },
+> ```
 
 Verify that everything is working by running
 ```
@@ -124,4 +122,4 @@ which should serve your html page on `localhost`. You should see the `<h1>` elem
 
 ---
 
-In the nexrt section we will create some Fluent (`.ftl`) files and cover how to get parcel to add them as assets to your project.
+In the [next section](./fluent-files.md) we will create some Fluent (`.ftl`) files and cover how to get parcel to add them as assets to your project.

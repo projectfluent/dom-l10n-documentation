@@ -6,7 +6,7 @@ If you don't have a Parcel project set up with fluent files, please refer to the
 
 ---
 
-First thing's first, we need to add and import our Fluent dependencies.
+First, we need to add and import our Fluent dependencies.
 
 For this tutorial we will install `fluent/bundle` and `fluent/dom` via the following command:
 
@@ -24,7 +24,7 @@ And verify that the dependencies are added to your `package.json`.
 }
 ```
 
-Then we'll want to import some items from these dependencies in `index.js`.
+Then we need to import some items from these dependencies in `index.js`.
 
 ```JavaScript
 import { DOMLocalization } from "@fluent/dom";
@@ -44,7 +44,7 @@ Add the following lines to the `<head>` section of your `index.html` file.
 
 ---
 
-Now, we're going to add a JavaScript function to `index.js` to retrieve this meta data.
+Now we are going to add a JavaScript function to `index.js` to retrieve this meta data.
 
 ```JavaScript
 function getMeta(elem) {
@@ -67,9 +67,9 @@ getMeta(document.head).available;
 
 ---
 
-Now that we're able to retrieve the metadata for which locales are supported, we need a way to resolve the paths to the Fluent resources that we created for those locales.
+Now that we are able to retrieve the metadata for which locales are supported, we need a way to resolve the paths to the Fluent resources that we created for those locales.
 
-We're going to add the following line to the `<head>` section of the `index.html` file:
+We are going to add the following line to the `<head>` section of the `index.html` file:
 
 ```HTML
 <link name="localization" content="./localization/{locale}/main.ftl" />
@@ -86,7 +86,7 @@ async function fetchResource(locale, resourceId) {
 }
 ```
 
-Once we're able to fetch a resource, we'll want to be able to turn that resource into a `FluentBundle`.
+Once we are able to fetch a resource, we will want to be able to turn that resource into a `FluentBundle`.
 
 ```JavaScript
 async function generateBundle(locale, resourceId) {
@@ -100,7 +100,7 @@ async function generateBundle(locale, resourceId) {
 }
 ```
 
-Finally, we'll want a top-level `generateBundles` function (remember, this is what `DOMLocalization` is initialized with) to provide a generator over the available fluent bundles for our supported locales.
+Finally, we will want a top-level `generateBundles` function (remember, this is what `DOMLocalization` is initialized with) to provide a generator over the available fluent bundles for our supported locales.
 
 ```JavaScript
 async function* generateBundles(resourceIds) {

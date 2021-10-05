@@ -138,8 +138,8 @@
 <p>This tutorial will walk you through getting Parcel to add Fluent (<code>.ftl</code>) files as assets to your project.</p>
 <p>If you don't have a working Parcel project, please refer to the <a href="./project-setup.html">previous section</a>.</p>
 <hr />
-<p>Now that we have a working Parcel setup, we need to add some fluent files. We will store the files in <code>src</code>, under an <code>assets</code>. Within <code>assets</code> we will have <code>localization/{locale}/main.ftl</code>.</p>
-<p>In this tutorial, we will only create files for the <code>en-US</code> and <code>es-MX</code> locales.</p>
+<p>Now that we have a working Parcel setup, we need to add some fluent files. We will store the files in <code>src</code>, under an <code>assets</code> directory. Within <code>assets</code> we will have <code>localization/{locale}/main.ftl</code>, where each <code>{locale}</code> will be a specific locale.</p>
+<p>In this tutorial, we will only create paths for the <code>en-US</code> and <code>es-MX</code> locales.</p>
 <pre><code>mkdir -p src/assets/localization/en-US
 touch src/assets/localization/en-US/main.ftl
 mkdir src/assets/localization/es-MX
@@ -185,7 +185,7 @@ touch src/assets/localization/es-MX/main.ftl
 <pre><code class="language-json">&quot;assetsPath&quot;: &quot;./src/assets&quot;,
 </code></pre>
 <hr />
-<p>Now, when we run <code>npm start</code>, Parcel should build our <code>dist</code> directory with our assets included.</p>
+<p>Now when we run <code>npm start</code>, Parcel should build our <code>dist</code> directory with our assets included.</p>
 <pre><code>.
 ├── dist
 │  ├── localization
@@ -199,7 +199,7 @@ touch src/assets/localization/es-MX/main.ftl
 ...
 </code></pre>
 <hr />
-<p>In the next section we will cover how to use Fluent DOM from JavaScript to localize our message.</p>
+<p>In the <a href="using-fluent.html">next section</a> we will cover how to use Fluent DOM from JavaScript to localize our message.</p>
 
                     </main>
 

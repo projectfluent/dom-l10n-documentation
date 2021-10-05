@@ -6,9 +6,9 @@ If you don't have a working Parcel project, please refer to the [previous sectio
 
 ---
 
-Now that we have a working Parcel setup, we need to add some fluent files. We will store the files in `src`, under an `assets`. Within `assets` we will have `localization/{locale}/main.ftl`.
+Now that we have a working Parcel setup, we need to add some fluent files. We will store the files in `src`, under an `assets` directory. Within `assets` we will have `localization/{locale}/main.ftl`, where each `{locale}` will be a specific locale.
 
-In this tutorial, we will only create files for the `en-US` and `es-MX` locales.
+In this tutorial, we will only create paths for the `en-US` and `es-MX` locales.
 
 ```
 mkdir -p src/assets/localization/en-US
@@ -64,7 +64,7 @@ Finally, we need to add the path to our assets to the `package.json` by includin
 
 ---
 
-Now, when we run `npm start`, Parcel should build our `dist` directory with our assets included.
+Now when we run `npm start`, Parcel should build our `dist` directory with our assets included.
 
 ```
 .
@@ -82,4 +82,4 @@ Now, when we run `npm start`, Parcel should build our `dist` directory with our 
 
 ---
 
-In the next section we will cover how to use Fluent DOM from JavaScript to localize our message.
+In the [next section](using-fluent.md) we will cover how to use Fluent DOM from JavaScript to localize our message.
