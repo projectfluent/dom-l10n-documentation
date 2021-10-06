@@ -136,7 +136,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="overview"><a class="header" href="#overview">Overview</a></h1>
-<p>This documentation is intended to be a starting-point for anyone looking to understand and learn to use Fluent DOM.</p>
+<p>This documentation is intended to be a starting point for anyone looking to understand and learn to use Fluent DOM.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="l10n-id"><a class="header" href="#l10n-id">L10n ID</a></h1>
 <p>The L10n ID is an identifier that you assign to a DOM element to be localized.</p>
 <p>For example, a welcome message may have a regular <code>id</code> of <code>welcome</code> so that you can query for it in JavaScript code and a <code>data-l10n-id</code> of <code>hello</code>.</p>
@@ -169,7 +169,7 @@
 </code></pre>
 <p>And in the Fluent file, we will be able to use the argument within our localized content:</p>
 <pre><code># $name - The name of the person to welcome.
-hello = Hello {$name}
+hello = Hello { $name }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dom-overlays"><a class="header" href="#dom-overlays">DOM Overlays</a></h1>
 <p><em>At the moment, this page is taken verbatim from <a href="https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays">https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays</a></em></p>
@@ -179,7 +179,7 @@ hello = Hello {$name}
 <p><em>Text-level elements</em>. Localizers may want to use some HTML markup to make the translation correct according to the rules of grammar and spelling. For instance, <code>&lt;em&gt;</code> may be used for words borrowed from foreign languages, <code>&lt;sup&gt;</code> may be used for ordinals or abbreviations, etc.</p>
 </li>
 <li>
-<p><em>Functional elements</em>. Developers may want to pass elements as arguments to the translation and create rich language-agnostic UIs. For instance, they may define an <code>&lt;img&gt;</code> element which should be placed inline inside of the translation. Each language will need to decide where exactly the <img> should go.</p>
+<p><em>Functional elements</em>. Developers may want to pass elements as arguments to the translation and create rich language-agnostic UIs. For instance, they may define an <code>&lt;img&gt;</code> element which should be placed inline inside of the translation. Each language will need to decide where exactly the <code>&lt;img&gt;</code> should go.</p>
 </li>
 </ul>
 <p><code>fluent-dom</code> features a secure overlay logic which:</p>
@@ -255,6 +255,7 @@ hello = Hello {$name}
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fluentjs"><a class="header" href="#fluentjs">Fluent.js</a></h1>
 <p>Fluent.js is a JavaScript implementation of Project Fluent, a localization framework designed to unleash the expressive power of the natural language.</p>
 <p>Fluent.js allows interaction with <a href="./l10n-id.html"><code>data-l10n-id</code></a> and <a href="./l10n-args.html"><code>data-l10n-args</code></a> through the <a href="./dom-localization.html"><code>DOMLocalization</code></a> class, which is derived from the <a href="localization.html"><code>Localization</code></a> base class.</p>
+<p>The <code>Localization</code> base class provides the mid-level APIs for interacting with Fluent. High-level abstractions such as Fluent DOM (for localizing HTML pages) and Fluent React (for react projects) are built on top of this <code>Localization</code> object's abstractions.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="localization"><a class="header" href="#localization">Localization</a></h1>
 <p>The <code>Localization</code> class is a central high-level API for using Fluent.</p>
 <h2 id="functionality"><a class="header" href="#functionality">Functionality</a></h2>
@@ -262,7 +263,7 @@ hello = Hello {$name}
 <h3 id="constructorresourceids-generatebundles"><a class="header" href="#constructorresourceids-generatebundles"><code>constructor(resourceIds, generateBundles)</code></a></h3>
 <blockquote>
 <p>Creates a new <code>Localization</code> object given a list of <code>resourceIDs</code> and a <code>generateBundles</code> function that returns a generator over <code>FluentBundles</code> when given a list of <code>resourceIDs</code>.</p>
-<p>The <code>generateBundles</code> function's generator behavior acts as a fallbacking strategy for the availability of fluent resources.</p>
+<p>The <code>generateBundles</code> function's generator behavior acts as a fallbacking strategy for the availability of fluent resources. Fallbacking allows for translations from a different language to be used if the translation is not available in the desired language. For example, if the Spanish translation is missing, English text could be displayed instead.</p>
 <p>When localizing content in the ideal scenario, the <code>generateBundles</code> function will only ever have to produce one bundle. This would mean that the first bundle had translations for every requested localization.</p>
 <p>If the current bundle in unable to produce a translation, then the generator's next bundle will be retrieved in an attempt to find a translation, and so on.</p>
 </blockquote>
@@ -460,33 +461,24 @@ touch src/index.js
 &lt;html&gt;
   &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot; /&gt;
-    &lt;script defer src=&quot;index.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;module&quot; src=&quot;index.js&quot;&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1 id=&quot;welcome&quot;&gt;Hello&lt;/h1&gt;
+    &lt;h1 id=&quot;welcome&quot;&gt;Hi!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 <hr />
 <p>Now we need to add the Parcel bundler to run our project.</p>
-<pre><code>npm install parcel-bundler
+<pre><code>npm install parcel
 </code></pre>
-<p>You should now see that <code>parcel-bundler</code> has been added as a dependency in <code>package.json</code></p>
+<p>You should now see that <code>parcel</code> has been added as a dependency in <code>package.json</code></p>
 <pre><code class="language-json">&quot;dependencies&quot;: {
-  &quot;parcel-bundler&quot;: &quot;^1.12.5&quot;
+  &quot;parcel&quot;: &quot;^2.0.0-rc.0&quot;,
 }
 </code></pre>
 <hr />
-<p>We need to add this line to <code>index.js</code></p>
-<pre><code class="language-JavaScript">import &quot;regenerator-runtime/runtime&quot;;
-</code></pre>
-<p>And then add these lines to <code>package.json</code></p>
-<pre><code class="language-json">&quot;browserslist&quot;: [
-  &quot;since 2019-01&quot;
-],
-</code></pre>
-<hr />
-<p>Next we need to tell <code>npm</code> to use <code>Parcel</code> when it starts by adding the following line to the <code>scripts</code> section in <code>package.json</code>.</p>
+<p>Next we need to tell <code>npm</code> to use <code>Parcel</code> on the <code>start</code> command by adding the following line to the <code>scripts</code> section in <code>package.json</code>.</p>
 <pre><code class="language-json">&quot;start&quot;: &quot;parcel src/index.html&quot;,
 </code></pre>
 <blockquote>
@@ -499,59 +491,68 @@ touch src/index.js
 <p>Verify that everything is working by running</p>
 <pre><code>npm start
 </code></pre>
-<p>which should serve your html page on <code>localhost</code>. You should see the <code>&lt;h1&gt;</code> element that says <strong>Hello</strong>.</p>
+<p>which should serve your html page on <code>localhost</code>. You should see the <code>&lt;h1&gt;</code> element that says <strong>Hi!</strong>.</p>
 <hr />
 <p>In the <a href="./fluent-files.html">next section</a> we will create some Fluent (<code>.ftl</code>) files and cover how to get parcel to add them as assets to your project.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="adding-fluent-files"><a class="header" href="#adding-fluent-files">Adding fluent files</a></h1>
 <p>This tutorial will walk you through getting Parcel to add Fluent (<code>.ftl</code>) files as assets to your project.</p>
 <p>If you don't have a working Parcel project, please refer to the <a href="./project-setup.html">previous section</a>.</p>
 <hr />
-<p>Now that we have a working Parcel setup, we need to add some fluent files. We will store the files in <code>src</code>, under an <code>assets</code> directory. Within <code>assets</code> we will have <code>localization/{locale}/main.ftl</code>, where each <code>{locale}</code> will be a specific locale.</p>
+<p>Now that we have a working Parcel setup, we need to add some fluent files. We will store the files in a directory called <code>static</code> in our project root. Within the <code>static</code> directory we will create <code>localization/{locale}/main.ftl</code>, where each <code>{locale}</code> will be a specific locale.</p>
 <p>In this tutorial, we will only create paths for the <code>en-US</code> and <code>es-MX</code> locales.</p>
-<pre><code>mkdir -p src/assets/localization/en-US
-touch src/assets/localization/en-US/main.ftl
-mkdir src/assets/localization/es-MX
-touch src/assets/localization/es-MX/main.ftl
+<pre><code>mkdir -p static/localization/en-US
+touch static/localization/en-US/main.ftl
+mkdir static/localization/es-MX
+touch static/localization/es-MX/main.ftl
 </code></pre>
 <blockquote>
 <pre><code>fluent-playground
 ├── src
-│  ├── assets
-│  │  └── localization
-│  │     ├── en-US
-│  │     │  └── main.ftl
-│  │     └── es-MX
-│  │        └── main.ftl
 │  ├── index.html
 │  └── index.js
+├── static
+│  └── localization
+│     ├── en-US
+│     │  └── main.ftl
+│     └── es-MX
+│        └── main.ftl
+├── package-lock.json
 └── package.json
 </code></pre>
 </blockquote>
-<p>Then we will populate our <code>main.ftl</code> files with our localzed message using <code>hello</code> as our <code>data-l10n-id</code>.</p>
+<p>Then we will populate our <code>main.ftl</code> files with our localized message using <code>hello</code> as our <code>data-l10n-id</code>.</p>
 <blockquote>
-<p><strong><em>src/assets/localization/en-US/main.ftl</em></strong></p>
+<p><strong><em>static/localization/en-US/main.ftl</em></strong></p>
 <pre><code>hello = Hello!
 </code></pre>
 </blockquote>
 <blockquote>
-<p><strong><em>src/assets/localization/es-MX/main.ftl</em></strong></p>
+<p><strong><em>static/localization/es-MX/main.ftl</em></strong></p>
 <pre><code>hello = ¡Hola!
 </code></pre>
 </blockquote>
 <hr />
-<p>Next we will need to install a Parcel plugin to copy over our assets to our project directory and verify that it is added to your <code>package.json</code>.</p>
-<pre><code>npm install parcel-plugin-asset-copier
+<p>Next we will need to install a Parcel plugin to copy over our static files to our project directory, then verify that it is added to your <code>package.json</code>.</p>
+<pre><code>npm install parcel-reporter-static-files-copy
 </code></pre>
 <blockquote>
 <pre><code class="language-json">&quot;dependencies&quot;: {
   &quot;parcel-bundler&quot;: &quot;^1.12.5&quot;,
-  &quot;parcel-plugin-asset-copier&quot;: &quot;^1.1.0&quot;
+  &quot;parcel-reporter-static-files-copy&quot;: &quot;^1.3.0&quot;
 }
 </code></pre>
 </blockquote>
-<p>Finally, we need to add the path to our assets to the <code>package.json</code> by including the following line:</p>
-<pre><code class="language-json">&quot;assetsPath&quot;: &quot;./src/assets&quot;,
+<p>Finally, in order to enable the static file copy, we need to create a <code>.parcelrc</code> file and add a few lines to it.</p>
+<pre><code>touch .parcelrc
 </code></pre>
+<blockquote>
+<p><strong><em>.parcelrc</em></strong></p>
+<pre><code>{
+  &quot;extends&quot;: [&quot;@parcel/config-default&quot;],
+  &quot;reporters&quot;: [&quot;...&quot;, &quot;parcel-reporter-static-files-copy&quot;]
+}
+</code></pre>
+</blockquote>
 <hr />
 <p>Now when we run <code>npm start</code>, Parcel should build our <code>dist</code> directory with our assets included.</p>
 <pre><code>.
@@ -590,8 +591,8 @@ import { FluentBundle, FluentResource } from &quot;@fluent/bundle&quot;;
 <hr />
 <p>Next, we need to add the metadata to the HTML regarding which languages we have available.</p>
 <p>Add the following lines to the <code>&lt;head&gt;</code> section of your <code>index.html</code> file.</p>
-<pre><code class="language-html">    &lt;meta name=&quot;defaultLanguage&quot; content=&quot;en-US&quot;&gt;
-    &lt;meta name=&quot;availableLanguages&quot; content=&quot;en-US, es-MX&quot;&gt;
+<pre><code class="language-html">    &lt;meta name=&quot;defaultLanguage&quot; content=&quot;en-US&quot; /&gt;
+    &lt;meta name=&quot;availableLanguages&quot; content=&quot;en-US, es-MX&quot; /&gt;
 </code></pre>
 <hr />
 <p>Now we are going to add a JavaScript function to <code>index.js</code> to retrieve this meta data.</p>
@@ -614,6 +615,21 @@ getMeta(document.head).available;
 <p>We are going to add the following line to the <code>&lt;head&gt;</code> section of the <code>index.html</code> file:</p>
 <pre><code class="language-HTML">&lt;link name=&quot;localization&quot; content=&quot;./localization/{locale}/main.ftl&quot; /&gt;
 </code></pre>
+<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;defaultLanguage&quot; content=&quot;es-MX&quot; /&gt;
+    &lt;meta name=&quot;availableLanguages&quot; content=&quot;en-US, es-MX&quot; /&gt;
+    &lt;link name=&quot;localization&quot; content=&quot;./localization/{locale}/main.ftl&quot; /&gt;
+    &lt;script type=&quot;module&quot; src=&quot;index.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 id=&quot;welcome&quot;&gt;Hi!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr />
 <p>We will now need an asynchronous JavaScript function to fetch a <code>FluentResource</code> from a given path, replacing the <code>{locale}</code> template with an actual given locale.</p>
 <pre><code class="language-JavaScript">async function fetchResource(locale, resourceId) {
   const url = resourceId.replace(&quot;{locale}&quot;, locale);
@@ -623,7 +639,7 @@ getMeta(document.head).available;
 }
 </code></pre>
 <p>Once we are able to fetch a resource, we will want to be able to turn that resource into a <code>FluentBundle</code>.</p>
-<pre><code class="language-JavaScript">async function generateBundle(locale, resourceId) {
+<pre><code class="language-JavaScript">async function createBundle(locale, resourceId) {
     let resource = await fetchResource(locale, resourceId);
     let bundle = new FluentBundle(locale);
     let errors = bundle.addResource(resource);
@@ -636,11 +652,11 @@ getMeta(document.head).available;
 <p>Finally, we will want a top-level <code>generateBundles</code> function (remember, this is what <code>DOMLocalization</code> is initialized with) to provide a generator over the available fluent bundles for our supported locales.</p>
 <pre><code class="language-JavaScript">async function* generateBundles(resourceIds) {
   const defaultLanguage = getMeta(document.head).default;
-  yield await generateBundle(defaultLanguage, resourceIds[0]);
+  yield await createBundle(defaultLanguage, resourceIds[0]);
 
   const availableLanguages = getMeta(document.head).available;
   for (const locale of availableLanguages) {
-    yield await generateBundle(locale, resourceIds[0]);
+    yield await createBundle(locale, resourceIds[0]);
   }
 }
 </code></pre>
@@ -662,7 +678,7 @@ l10n.translateRoots();
 <p>With this final step, you should be able to invoke</p>
 <pre><code>npm start
 </code></pre>
-<p>and now see <strong>Hello!</strong> (with the exclamation point, as specified in our Fluent file for <code>en-US</code>). You should also be able to change the default language in <code>index.html</code> to <code>es-MX</code> and see <strong>¡Hola!</strong>.</p>
+<p>and now see <strong>Hello!</strong>, as specified in our Fluent file for <code>en-US</code>. You should also be able to change the default language in <code>index.html</code> to <code>es-MX</code> and see <strong>¡Hola!</strong>.</p>
 <hr />
 <p>Congratulations! You've just set up a project from scratch that uses Fluent DOM to localize HTML elements.</p>
 

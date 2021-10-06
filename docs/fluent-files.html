@@ -138,52 +138,61 @@
 <p>This tutorial will walk you through getting Parcel to add Fluent (<code>.ftl</code>) files as assets to your project.</p>
 <p>If you don't have a working Parcel project, please refer to the <a href="./project-setup.html">previous section</a>.</p>
 <hr />
-<p>Now that we have a working Parcel setup, we need to add some fluent files. We will store the files in <code>src</code>, under an <code>assets</code> directory. Within <code>assets</code> we will have <code>localization/{locale}/main.ftl</code>, where each <code>{locale}</code> will be a specific locale.</p>
+<p>Now that we have a working Parcel setup, we need to add some fluent files. We will store the files in a directory called <code>static</code> in our project root. Within the <code>static</code> directory we will create <code>localization/{locale}/main.ftl</code>, where each <code>{locale}</code> will be a specific locale.</p>
 <p>In this tutorial, we will only create paths for the <code>en-US</code> and <code>es-MX</code> locales.</p>
-<pre><code>mkdir -p src/assets/localization/en-US
-touch src/assets/localization/en-US/main.ftl
-mkdir src/assets/localization/es-MX
-touch src/assets/localization/es-MX/main.ftl
+<pre><code>mkdir -p static/localization/en-US
+touch static/localization/en-US/main.ftl
+mkdir static/localization/es-MX
+touch static/localization/es-MX/main.ftl
 </code></pre>
 <blockquote>
 <pre><code>fluent-playground
 ├── src
-│  ├── assets
-│  │  └── localization
-│  │     ├── en-US
-│  │     │  └── main.ftl
-│  │     └── es-MX
-│  │        └── main.ftl
 │  ├── index.html
 │  └── index.js
+├── static
+│  └── localization
+│     ├── en-US
+│     │  └── main.ftl
+│     └── es-MX
+│        └── main.ftl
+├── package-lock.json
 └── package.json
 </code></pre>
 </blockquote>
-<p>Then we will populate our <code>main.ftl</code> files with our localzed message using <code>hello</code> as our <code>data-l10n-id</code>.</p>
+<p>Then we will populate our <code>main.ftl</code> files with our localized message using <code>hello</code> as our <code>data-l10n-id</code>.</p>
 <blockquote>
-<p><strong><em>src/assets/localization/en-US/main.ftl</em></strong></p>
+<p><strong><em>static/localization/en-US/main.ftl</em></strong></p>
 <pre><code>hello = Hello!
 </code></pre>
 </blockquote>
 <blockquote>
-<p><strong><em>src/assets/localization/es-MX/main.ftl</em></strong></p>
+<p><strong><em>static/localization/es-MX/main.ftl</em></strong></p>
 <pre><code>hello = ¡Hola!
 </code></pre>
 </blockquote>
 <hr />
-<p>Next we will need to install a Parcel plugin to copy over our assets to our project directory and verify that it is added to your <code>package.json</code>.</p>
-<pre><code>npm install parcel-plugin-asset-copier
+<p>Next we will need to install a Parcel plugin to copy over our static files to our project directory, then verify that it is added to your <code>package.json</code>.</p>
+<pre><code>npm install parcel-reporter-static-files-copy
 </code></pre>
 <blockquote>
 <pre><code class="language-json">&quot;dependencies&quot;: {
   &quot;parcel-bundler&quot;: &quot;^1.12.5&quot;,
-  &quot;parcel-plugin-asset-copier&quot;: &quot;^1.1.0&quot;
+  &quot;parcel-reporter-static-files-copy&quot;: &quot;^1.3.0&quot;
 }
 </code></pre>
 </blockquote>
-<p>Finally, we need to add the path to our assets to the <code>package.json</code> by including the following line:</p>
-<pre><code class="language-json">&quot;assetsPath&quot;: &quot;./src/assets&quot;,
+<p>Finally, in order to enable the static file copy, we need to create a <code>.parcelrc</code> file and add a few lines to it.</p>
+<pre><code>touch .parcelrc
 </code></pre>
+<blockquote>
+<p><strong><em>.parcelrc</em></strong></p>
+<pre><code>{
+  &quot;extends&quot;: [&quot;@parcel/config-default&quot;],
+  &quot;reporters&quot;: [&quot;...&quot;, &quot;parcel-reporter-static-files-copy&quot;]
+}
+</code></pre>
+</blockquote>
 <hr />
 <p>Now when we run <code>npm start</code>, Parcel should build our <code>dist</code> directory with our assets included.</p>
 <pre><code>.

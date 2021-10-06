@@ -177,33 +177,24 @@ touch src/index.js
 &lt;html&gt;
   &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot; /&gt;
-    &lt;script defer src=&quot;index.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;module&quot; src=&quot;index.js&quot;&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1 id=&quot;welcome&quot;&gt;Hello&lt;/h1&gt;
+    &lt;h1 id=&quot;welcome&quot;&gt;Hi!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 <hr />
 <p>Now we need to add the Parcel bundler to run our project.</p>
-<pre><code>npm install parcel-bundler
+<pre><code>npm install parcel
 </code></pre>
-<p>You should now see that <code>parcel-bundler</code> has been added as a dependency in <code>package.json</code></p>
+<p>You should now see that <code>parcel</code> has been added as a dependency in <code>package.json</code></p>
 <pre><code class="language-json">&quot;dependencies&quot;: {
-  &quot;parcel-bundler&quot;: &quot;^1.12.5&quot;
+  &quot;parcel&quot;: &quot;^2.0.0-rc.0&quot;,
 }
 </code></pre>
 <hr />
-<p>We need to add this line to <code>index.js</code></p>
-<pre><code class="language-JavaScript">import &quot;regenerator-runtime/runtime&quot;;
-</code></pre>
-<p>And then add these lines to <code>package.json</code></p>
-<pre><code class="language-json">&quot;browserslist&quot;: [
-  &quot;since 2019-01&quot;
-],
-</code></pre>
-<hr />
-<p>Next we need to tell <code>npm</code> to use <code>Parcel</code> when it starts by adding the following line to the <code>scripts</code> section in <code>package.json</code>.</p>
+<p>Next we need to tell <code>npm</code> to use <code>Parcel</code> on the <code>start</code> command by adding the following line to the <code>scripts</code> section in <code>package.json</code>.</p>
 <pre><code class="language-json">&quot;start&quot;: &quot;parcel src/index.html&quot;,
 </code></pre>
 <blockquote>
@@ -216,7 +207,7 @@ touch src/index.js
 <p>Verify that everything is working by running</p>
 <pre><code>npm start
 </code></pre>
-<p>which should serve your html page on <code>localhost</code>. You should see the <code>&lt;h1&gt;</code> element that says <strong>Hello</strong>.</p>
+<p>which should serve your html page on <code>localhost</code>. You should see the <code>&lt;h1&gt;</code> element that says <strong>Hi!</strong>.</p>
 <hr />
 <p>In the <a href="./fluent-files.html">next section</a> we will create some Fluent (<code>.ftl</code>) files and cover how to get parcel to add them as assets to your project.</p>
 
