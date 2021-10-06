@@ -74,6 +74,23 @@ We are going to add the following line to the `<head>` section of the `index.htm
 ```HTML
 <link name="localization" content="./localization/{locale}/main.ftl" />
 ```
+```HTML
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="defaultLanguage" content="es-MX" />
+    <meta name="availableLanguages" content="en-US, es-MX" />
+    <link name="localization" content="./localization/{locale}/main.ftl" />
+    <script type="module" src="index.js"></script>
+  </head>
+  <body>
+    <h1 id="welcome">Hi!</h1>
+  </body>
+</html>
+```
+
+---
 
 We will now need an asynchronous JavaScript function to fetch a `FluentResource` from a given path, replacing the `{locale}` template with an actual given locale.
 
@@ -140,7 +157,7 @@ With this final step, you should be able to invoke
 npm start
 ```
 
-and now see **Hello!** (with the exclamation point, as specified in our Fluent file for `en-US`). You should also be able to change the default language in `index.html` to `es-MX` and see **¡Hola!**.
+and now see **Hello!**, as specified in our Fluent file for `en-US`. You should also be able to change the default language in `index.html` to `es-MX` and see **¡Hola!**.
 
 ---
 
