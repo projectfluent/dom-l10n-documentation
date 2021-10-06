@@ -15,5 +15,5 @@ And in the Fluent file, we will be able to use the argument within our localized
 
 ```
 # $name - The name of the person to welcome.
-hello = Hello {$name}
+hello = Hello { $name }
 ```

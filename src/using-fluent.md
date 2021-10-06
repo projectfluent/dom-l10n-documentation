@@ -38,8 +38,8 @@ Next, we need to add the metadata to the HTML regarding which languages we have 
 Add the following lines to the `<head>` section of your `index.html` file.
 
 ```html
-    <meta name="defaultLanguage" content="en-US">
-    <meta name="availableLanguages" content="en-US, es-MX">
+    <meta name="defaultLanguage" content="en-US" />
+    <meta name="availableLanguages" content="en-US, es-MX" />
 ```
 
 ---
@@ -89,7 +89,7 @@ async function fetchResource(locale, resourceId) {
 Once we are able to fetch a resource, we will want to be able to turn that resource into a `FluentBundle`.
 
 ```JavaScript
-async function generateBundle(locale, resourceId) {
+async function createBundle(locale, resourceId) {
     let resource = await fetchResource(locale, resourceId);
     let bundle = new FluentBundle(locale);
     let errors = bundle.addResource(resource);
@@ -105,11 +105,11 @@ Finally, we will want a top-level `generateBundles` function (remember, this is 
 ```JavaScript
 async function* generateBundles(resourceIds) {
   const defaultLanguage = getMeta(document.head).default;
-  yield await generateBundle(defaultLanguage, resourceIds[0]);
+  yield await createBundle(defaultLanguage, resourceIds[0]);
 
   const availableLanguages = getMeta(document.head).available;
   for (const locale of availableLanguages) {
-    yield await generateBundle(locale, resourceIds[0]);
+    yield await createBundle(locale, resourceIds[0]);
   }
 }
 ```

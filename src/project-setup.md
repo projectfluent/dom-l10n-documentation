@@ -59,10 +59,10 @@ Populate your `index.html` with some minimal content:
 <html>
   <head>
     <meta charset="UTF-8" />
-    <script defer src="index.js"></script>
+    <script type="module" src="index.js"></script>
   </head>
   <body>
-    <h1 id="welcome">Hello</h1>
+    <h1 id="welcome">Hi!</h1>
   </body>
 </html>
 ```
@@ -72,36 +72,20 @@ Populate your `index.html` with some minimal content:
 Now we need to add the Parcel bundler to run our project.
 
 ```
-npm install parcel-bundler
+npm install parcel
 ```
 
-You should now see that `parcel-bundler` has been added as a dependency in `package.json`
+You should now see that `parcel` has been added as a dependency in `package.json`
 
 ```json
 "dependencies": {
-  "parcel-bundler": "^1.12.5"
+  "parcel": "^2.0.0-rc.0",
 }
 ```
 
 ---
 
-We need to add this line to `index.js`
-
-```JavaScript
-import "regenerator-runtime/runtime";
-```
-
-And then add these lines to `package.json`
-
-```json
-"browserslist": [
-  "since 2019-01"
-],
-```
-
----
-
-Next we need to tell `npm` to use `Parcel` when it starts by adding the following line to the `scripts` section in `package.json`.
+Next we need to tell `npm` to use `Parcel` on the `start` command by adding the following line to the `scripts` section in `package.json`.
 
 ```json
 "start": "parcel src/index.html",
@@ -118,7 +102,7 @@ Verify that everything is working by running
 npm start
 ```
 
-which should serve your html page on `localhost`. You should see the `<h1>` element that says **Hello**.
+which should serve your html page on `localhost`. You should see the `<h1>` element that says **Hi!**.
 
 ---
 

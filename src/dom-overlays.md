@@ -6,7 +6,7 @@ When localizing an HTML document you're likely to encounter two scenarios where 
 
   - _Text-level elements_. Localizers may want to use some HTML markup to make the translation correct according to the rules of grammar and spelling. For instance, `<em>` may be used for words borrowed from foreign languages, `<sup>` may be used for ordinals or abbreviations, etc.
 
-  - _Functional elements_. Developers may want to pass elements as arguments to the translation and create rich language-agnostic UIs. For instance, they may define an `<img>` element which should be placed inline inside of the translation. Each language will need to decide where exactly the <img> should go.
+  - _Functional elements_. Developers may want to pass elements as arguments to the translation and create rich language-agnostic UIs. For instance, they may define an `<img>` element which should be placed inline inside of the translation. Each language will need to decide where exactly the `<img>` should go.
 
 `fluent-dom` features a secure overlay logic which:
 

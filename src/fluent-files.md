@@ -6,61 +6,68 @@ If you don't have a working Parcel project, please refer to the [previous sectio
 
 ---
 
-Now that we have a working Parcel setup, we need to add some fluent files. We will store the files in `src`, under an `assets` directory. Within `assets` we will have `localization/{locale}/main.ftl`, where each `{locale}` will be a specific locale.
+Now that we have a working Parcel setup, we need to add some fluent files. We will store the files in a directory called `static` in our project root. Within the `static` directory we will create `localization/{locale}/main.ftl`, where each `{locale}` will be a specific locale.
 
 In this tutorial, we will only create paths for the `en-US` and `es-MX` locales.
 
 ```
-mkdir -p src/assets/localization/en-US
-touch src/assets/localization/en-US/main.ftl
-mkdir src/assets/localization/es-MX
-touch src/assets/localization/es-MX/main.ftl
+mkdir -p static/localization/en-US
+touch static/localization/en-US/main.ftl
+mkdir static/localization/es-MX
+touch static/localization/es-MX/main.ftl
 ```
 > ```
 > fluent-playground
 > ├── src
-> │  ├── assets
-> │  │  └── localization
-> │  │     ├── en-US
-> │  │     │  └── main.ftl
-> │  │     └── es-MX
-> │  │        └── main.ftl
 > │  ├── index.html
 > │  └── index.js
+> ├── static
+> │  └── localization
+> │     ├── en-US
+> │     │  └── main.ftl
+> │     └── es-MX
+> │        └── main.ftl
+> ├── package-lock.json
 > └── package.json
 > ```
 
-Then we will populate our `main.ftl` files with our localzed message using `hello` as our `data-l10n-id`.
+Then we will populate our `main.ftl` files with our localized message using `hello` as our `data-l10n-id`.
 
-> **_src/assets/localization/en-US/main.ftl_**
+> **_static/localization/en-US/main.ftl_**
 > ```
 > hello = Hello!
 > ```
 
-> **_src/assets/localization/es-MX/main.ftl_**
+> **_static/localization/es-MX/main.ftl_**
 > ```
 > hello = ¡Hola!
 > ```
 
 ---
 
-Next we will need to install a Parcel plugin to copy over our assets to our project directory and verify that it is added to your `package.json`.
+Next we will need to install a Parcel plugin to copy over our static files to our project directory, then verify that it is added to your `package.json`.
 
 ```
-npm install parcel-plugin-asset-copier
+npm install parcel-reporter-static-files-copy
 ```
 > ```json
 > "dependencies": {
 >   "parcel-bundler": "^1.12.5",
->   "parcel-plugin-asset-copier": "^1.1.0"
+>   "parcel-reporter-static-files-copy": "^1.3.0"
 > }
 > ```
 
-Finally, we need to add the path to our assets to the `package.json` by including the following line:
-
-```json
-"assetsPath": "./src/assets",
+Finally, in order to enable the static file copy, we need to create a `.parcelrc` file and add a few lines to it.
 ```
+touch .parcelrc
+```
+> **_.parcelrc_**
+> ```
+> {
+>   "extends": ["@parcel/config-default"],
+>   "reporters": ["...", "parcel-reporter-static-files-copy"]
+> }
+> ```
 
 ---
 
