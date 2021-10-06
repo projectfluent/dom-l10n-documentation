@@ -74,21 +74,22 @@ We are going to add the following line to the `<head>` section of the `index.htm
 ```HTML
 <link name="localization" content="./localization/{locale}/main.ftl" />
 ```
-```HTML
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="defaultLanguage" content="es-MX" />
-    <meta name="availableLanguages" content="en-US, es-MX" />
-    <link name="localization" content="./localization/{locale}/main.ftl" />
-    <script type="module" src="index.js"></script>
-  </head>
-  <body>
-    <h1 id="welcome">Hi!</h1>
-  </body>
-</html>
-```
+> **_src/index.html_**
+> ```HTML
+> <!DOCTYPE html>
+> <html>
+>   <head>
+>     <meta charset="UTF-8" />
+>     <meta name="defaultLanguage" content="es-MX" />
+>     <meta name="availableLanguages" content="en-US, es-MX" />
+>     <link name="localization" content="./localization/{locale}/main.ftl" />
+>     <script type="module" src="index.js"></script>
+>   </head>
+>   <body>
+>     <h1 id="welcome">Hi!</h1>
+>   </body>
+> </html>
+> ```
 
 ---
 

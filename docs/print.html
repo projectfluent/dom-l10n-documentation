@@ -615,6 +615,8 @@ getMeta(document.head).available;
 <p>We are going to add the following line to the <code>&lt;head&gt;</code> section of the <code>index.html</code> file:</p>
 <pre><code class="language-HTML">&lt;link name=&quot;localization&quot; content=&quot;./localization/{locale}/main.ftl&quot; /&gt;
 </code></pre>
+<blockquote>
+<p><strong><em>src/index.html</em></strong></p>
 <pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
@@ -629,6 +631,7 @@ getMeta(document.head).available;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
+</blockquote>
 <hr />
 <p>We will now need an asynchronous JavaScript function to fetch a <code>FluentResource</code> from a given path, replacing the <code>{locale}</code> template with an actual given locale.</p>
 <pre><code class="language-JavaScript">async function fetchResource(locale, resourceId) {
