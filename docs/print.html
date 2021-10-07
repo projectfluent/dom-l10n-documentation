@@ -443,11 +443,11 @@ touch src/index.js
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot; /&gt;
-    &lt;script type=&quot;module&quot; src=&quot;index.js&quot;&gt;&lt;/script&gt;
+    &lt;meta charset='UTF-8' /&gt;
+    &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1 id=&quot;welcome&quot;&gt;Hi!&lt;/h1&gt;
+    &lt;h1 id='welcome'&gt;Hi!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -610,7 +610,7 @@ getMeta(document.head).available;
     &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1 data-l10n-id='hello' data-l10n-args='{ &quot;name&quot;: &quot;Erik&quot; }'&gt;Hi!&lt;/h1&gt;
+    &lt;h1 id='welcome'&gt;Hi!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -667,7 +667,62 @@ l10n.translateRoots();
 <p>and now see <strong>Hello!</strong>, as specified in our Fluent file for <code>en-US</code>. You should also be able to change the default language in <code>index.html</code> to <code>es-MX</code> and see <strong>¡Hola!</strong>.</p>
 <hr />
 <p>Congratulations! You've just set up a project from scratch that uses Fluent DOM to localize HTML elements.</p>
+<hr />
+<p>In the <a href="./using-l10n-id.html">next section</a> we will cover how to use <code>data-l10n-id</code> directly to translate DOM elements without doing it manually from JavaScript.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="using-l10n-id"><a class="header" href="#using-l10n-id">Using L10n ID</a></h1>
+<p>This section assumes that you have followed the <a href="./tutorial.html">Hello World</a> tutorial and that you have a working HTML page that localizes the following content.</p>
+<blockquote>
+<p><strong><em>src/index.html</em></strong></p>
+<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset='UTF-8' /&gt;
+    &lt;meta name='defaultLanguage' content='es-MX' /&gt;
+    &lt;meta name='availableLanguages' content='en-US, es-MX' /&gt;
+    &lt;link name='localization' content='./localization/{locale}/main.ftl' /&gt;
+    &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 id='welcome'&gt;Hi!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</blockquote>
+<hr />
+<p>In our current implementation we are using JavaScript to query for the <code>&lt;h1&gt;</code> element through its identifier (<code>id='welcome'</code>). Then we are using our <code>DOMLocalization</code> object to set this element's attributes to <code>hello</code> to match the <code>data-l10n-id</code> that is specified in our Fluent (<code>.ftl</code>) files.</p>
+<blockquote>
+<pre><code class="language-JavaScript">const welcome = document.getElementById(&quot;welcome&quot;);
+...
+l10n.setAttributes(welcome, &quot;hello&quot;);
+</code></pre>
+</blockquote>
+<hr />
+<p>This works fine, but one of the nice things about using Fluent DOM is the abstraction around using <code>data-l10n-id</code> directly in your HTML. Our <code>DOMLocalization</code> object can automatically observe the document and localize the elements who have matching L10n IDs without having to manually query for them in JavaScript.</p>
+<p>To make this change, we are going to remove the <code>id='welcome'</code> from our <code>&lt;h1&gt;</code> element in <code>index.html</code>, and add <code>data-l10n-id='hello'</code>.</p>
+<blockquote>
+<pre><code class="language-HTML">&lt;h1 data-l10n-id='hello'&gt;Hi!&lt;/h1&gt;
+</code></pre>
+</blockquote>
+<p>Then we are going to remove the lines in JavaScript that manually query for and modify the <code>&lt;h1&gt;</code> element.</p>
+<blockquote>
+<p><strong><em>remove commented lines</em></strong></p>
+<pre><code class="language-JavaScript">//const welcome = document.getElementById(&quot;welcome&quot;);
+//console.log(welcome);
+//
+const resources = document.querySelector(&quot;link[name=localization]&quot;);
+const resourcePathTemplate = resources.attributes.content.nodeValue;
+console.log(resourcePathTemplate);
+
+const l10n = new DOMLocalization([resourcePathTemplate], generateBundles);
+l10n.connectRoot(document.documentElement);
+//l10n.setAttributes(welcome, &quot;hello&quot;);
+l10n.translateRoots();
+</code></pre>
+</blockquote>
+<hr />
+<p>In this case, we fetch our resources, create our <code>DOMLocalization</code> object, connect it to the document, and then invoke <code>translateRoots()</code>. The <code>DOMLocalization</code> object will automatically see that our <code>&lt;h1&gt;</code> element has a <code>data-l10n-id='hello'</code>, which matches the ID in our Fluent (<code>.ftl</code>) files, and make the appropriate translation.</p>
+<hr />
+<p>In the <a href="./using-l10n-args.html">next section</a> we will cover how to pass arguments to our localized content using <code>data-l10n-args</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="using-l10n-args"><a class="header" href="#using-l10n-args">Using L10n Args</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dom-overlays"><a class="header" href="#dom-overlays">DOM Overlays</a></h1>
 <p><em>At the moment, this page is taken verbatim from <a href="https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays">https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays</a></em></p>

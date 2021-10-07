@@ -192,7 +192,7 @@ getMeta(document.head).available;
     &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1 data-l10n-id='hello' data-l10n-args='{ &quot;name&quot;: &quot;Erik&quot; }'&gt;Hi!&lt;/h1&gt;
+    &lt;h1 id='welcome'&gt;Hi!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -249,6 +249,8 @@ l10n.translateRoots();
 <p>and now see <strong>Hello!</strong>, as specified in our Fluent file for <code>en-US</code>. You should also be able to change the default language in <code>index.html</code> to <code>es-MX</code> and see <strong>¡Hola!</strong>.</p>
 <hr />
 <p>Congratulations! You've just set up a project from scratch that uses Fluent DOM to localize HTML elements.</p>
+<hr />
+<p>In the <a href="./using-l10n-id.html">next section</a> we will cover how to use <code>data-l10n-id</code> directly to translate DOM elements without doing it manually from JavaScript.</p>
 
                     </main>
 

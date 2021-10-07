@@ -58,11 +58,11 @@ Populate your `index.html` with some minimal content:
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <script type="module" src="index.js"></script>
+    <meta charset='UTF-8' />
+    <script type='module' src='index.js'></script>
   </head>
   <body>
-    <h1 id="welcome">Hi!</h1>
+    <h1 id='welcome'>Hi!</h1>
   </body>
 </html>
 ```

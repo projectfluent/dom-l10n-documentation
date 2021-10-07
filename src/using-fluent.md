@@ -86,7 +86,7 @@ We are going to add the following line to the `<head>` section of the `index.htm
 >     <script type='module' src='index.js'></script>
 >   </head>
 >   <body>
->     <h1 data-l10n-id='hello' data-l10n-args='{ "name": "Erik" }'>Hi!</h1>
+>     <h1 id='welcome'>Hi!</h1>
 >   </body>
 > </html>
 > ```
@@ -163,3 +163,7 @@ and now see **Hello!**, as specified in our Fluent file for `en-US`. You should 
 ---
 
 Congratulations! You've just set up a project from scratch that uses Fluent DOM to localize HTML elements.
+
+---
+
+In the [next section](./using-l10n-id.md) we will cover how to use `data-l10n-id` directly to translate DOM elements without doing it manually from JavaScript.
