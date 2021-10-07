@@ -79,14 +79,14 @@ We are going to add the following line to the `<head>` section of the `index.htm
 > <!DOCTYPE html>
 > <html>
 >   <head>
->     <meta charset="UTF-8" />
->     <meta name="defaultLanguage" content="es-MX" />
->     <meta name="availableLanguages" content="en-US, es-MX" />
->     <link name="localization" content="./localization/{locale}/main.ftl" />
->     <script type="module" src="index.js"></script>
+>     <meta charset='UTF-8' />
+>     <meta name='defaultLanguage' content='es-MX' />
+>     <meta name='availableLanguages' content='en-US, es-MX' />
+>     <link name='localization' content='./localization/{locale}/main.ftl' />
+>     <script type='module' src='index.js'></script>
 >   </head>
 >   <body>
->     <h1 id="welcome">Hi!</h1>
+>     <h1 data-l10n-id='hello' data-l10n-args='{ "name": "Erik" }'>Hi!</h1>
 >   </body>
 > </html>
 > ```

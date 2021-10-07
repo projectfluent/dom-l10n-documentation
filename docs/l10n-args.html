@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html" class="active"><strong aria-hidden="true">3.</strong> L10n Args</a></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">4.</strong> DOM Overlays</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">5.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">5.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">5.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">6.</strong> Getting started with Fluent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="npm.html"><strong aria-hidden="true">6.1.</strong> Installing NPM</a></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">6.2.</strong> Setting up a project</a></li><li class="chapter-item expanded "><a href="fluent-files.html"><strong aria-hidden="true">6.3.</strong> Adding Fluent files</a></li><li class="chapter-item expanded "><a href="using-fluent.html"><strong aria-hidden="true">6.4.</strong> Using Fluent</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="fluent-dom.html"><strong aria-hidden="true">2.</strong> Fluent DOM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.1.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html" class="active"><strong aria-hidden="true">2.2.</strong> L10n Args</a></li></ol></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">3.</strong> Getting Started With Fluent DOM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="fluent-js.html"><strong aria-hidden="true">3.1.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">3.1.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">3.1.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">3.2.</strong> Tutorial</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="npm.html"><strong aria-hidden="true">3.2.1.</strong> Installing NPM</a></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">3.2.2.</strong> Setting up a project</a></li><li class="chapter-item expanded "><a href="fluent-files.html"><strong aria-hidden="true">3.2.3.</strong> Adding Fluent files</a></li><li class="chapter-item expanded "><a href="using-fluent.html"><strong aria-hidden="true">3.2.4.</strong> Using Fluent</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">4.</strong> DOM Overlays</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -146,6 +146,10 @@
 <pre><code># $name - The name of the person to welcome.
 hello = Hello { $name }
 </code></pre>
+<p>In the example above, passing in <code>data-l10n-args='{&quot;name:&quot; &quot;world&quot;}'</code> would result in the final translation of <code>Hello world</code>.</p>
+<hr />
+<h2 id="limitations"><a class="header" href="#limitations">Limitations</a></h2>
+<p>At this time, Fluent DOM is only able to accept numbers and strings as <code>data-l10n-args</code>. It technically also supports dates, since dates can be represented as a number, however there is an open bug (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1611754">Bug1611754</a>) to support dates in a more straightforward way.</p>
 
                     </main>
 
@@ -154,7 +158,7 @@ hello = Hello { $name }
                             <a rel="prev" href="l10n-id.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="dom-overlays.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="getting-started.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -166,7 +170,7 @@ hello = Hello { $name }
                     <a rel="prev" href="l10n-id.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="dom-overlays.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="getting-started.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

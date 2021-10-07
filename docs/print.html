@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html"><strong aria-hidden="true">3.</strong> L10n Args</a></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">4.</strong> DOM Overlays</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">5.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">5.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">5.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">6.</strong> Getting started with Fluent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="npm.html"><strong aria-hidden="true">6.1.</strong> Installing NPM</a></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">6.2.</strong> Setting up a project</a></li><li class="chapter-item expanded "><a href="fluent-files.html"><strong aria-hidden="true">6.3.</strong> Adding Fluent files</a></li><li class="chapter-item expanded "><a href="using-fluent.html"><strong aria-hidden="true">6.4.</strong> Using Fluent</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="fluent-dom.html"><strong aria-hidden="true">2.</strong> Fluent DOM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.1.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html"><strong aria-hidden="true">2.2.</strong> L10n Args</a></li></ol></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">3.</strong> Getting Started With Fluent DOM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="fluent-js.html"><strong aria-hidden="true">3.1.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">3.1.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">3.1.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">3.2.</strong> Tutorial</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="npm.html"><strong aria-hidden="true">3.2.1.</strong> Installing NPM</a></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">3.2.2.</strong> Setting up a project</a></li><li class="chapter-item expanded "><a href="fluent-files.html"><strong aria-hidden="true">3.2.3.</strong> Adding Fluent files</a></li><li class="chapter-item expanded "><a href="using-fluent.html"><strong aria-hidden="true">3.2.4.</strong> Using Fluent</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">4.</strong> DOM Overlays</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -136,29 +136,82 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="overview"><a class="header" href="#overview">Overview</a></h1>
-<p>This documentation is intended to be a starting point for anyone looking to understand and learn to use Fluent DOM.</p>
+<p><a href="https://projectfluent.org/">Fluent</a> is a family of localization specifications, implementations and good practices developed by Mozilla.</p>
+<p>This documentation is intended to be a starting point for anyone looking to understand and learn to use Fluent DOM, which is a set of abstractions that allow for localizing content in HTML pages as they relate to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">Document Object Model</a> (DOM).</p>
+<hr />
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>We can specify translations in Fluent (<code>.ftl</code>) files for different languages. Here we specify translations for <code>en-US</code> and <code>es-MX</code>.</p>
+<blockquote>
+<p><strong><em>en-US/main.ftl</em></strong></p>
+<pre><code>hello = Hello { $name }.
+</code></pre>
+</blockquote>
+<blockquote>
+<p><strong><em>es-MX/main.ftl</em></strong></p>
+<pre><code>hello = Hola { $name }.
+</code></pre>
+</blockquote>
+<hr />
+<p>We can then use our Fluent translations to localize the content of elements in the HTML. In this example <code>&lt;h1&gt;</code> element will be translated by Fluent to say <code>&quot;Hola Erik.&quot;</code>, because we specify the <code>defaultLanguage</code> to be <code>es-MX</code>, which matches our translation above.</p>
+<blockquote>
+<p><strong><em>index.html</em></strong></p>
+<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset='UTF-8' /&gt;
+    &lt;meta name='defaultLanguage' content='es-MX' /&gt;
+    &lt;meta name='availableLanguages' content='en-US, es-MX' /&gt;
+    &lt;link name='localization' content='./localization/{locale}/main.ftl' /&gt;
+    &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 data-l10n-id='hello' data-l10n-args='{ &quot;name&quot;: &quot;Erik&quot; }'&gt;Hi!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</blockquote>
+<hr />
+<p>The following sectctions will explain the concepts behind Fluent DOM as well as present a walkthrough tutorial on how to set up a project from scratch that uses Fluent DOM to localize HTML content.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fluent-dom"><a class="header" href="#fluent-dom">Fluent DOM</a></h1>
+<p>Fluent DOM is an abstraction that is specialized for localizing the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">Document Object Model</a> (DOM).</p>
+<p>There are two primary concepts to understand when working with Fluent DOM:</p>
+<blockquote>
+<p><a href="./l10n-id.html">L10n ID</a> — The identifiers by which Fluent DOM will recognize elements to localize.</p>
+</blockquote>
+<blockquote>
+<p><a href="./l10n-args.html">L10n Args</a> — The arguments that may be passed into the localized content to affect the final translation.</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="l10n-id"><a class="header" href="#l10n-id">L10n ID</a></h1>
 <p>The L10n ID is an identifier that you assign to a DOM element to be localized.</p>
-<p>For example, a welcome message may have a regular <code>id</code> of <code>welcome</code> so that you can query for it in JavaScript code and a <code>data-l10n-id</code> of <code>hello</code>.</p>
-<pre><code class="language-html">&lt;p id='welcome'
-  data-l10n-id='hello'
-&lt;/p&gt;
+<p>For example, a welcome message may have a regular <code>id</code> of <code>welcome</code> and a <code>data-l10n-id</code> of <code>hello</code>. The regular <code>id</code> behaves as normal, a way to query for this element, such as with <code>getElementById()</code>. The <code>data-l10n-id</code> is intended to match a Fluent translation that will be used to localize this element.</p>
+<pre><code class="language-html">&lt;p id='welcome' data-l10n-id='hello'&gt;&lt;/p&gt;
 </code></pre>
-<p>You will likely have multiple Fluent (<code>.ftl</code>) files for different locales that specify localized content for the <code>hello</code> <code>data-l10n-id</code>.</p>
-<p>For example, for the <code>en</code> locale you might have:</p>
+<p>We define our L10n IDs in Fluent (<code>.ftl</code>) files for each locale that we want to provide a translation. In the example above, the <code>data-l10n-id</code> is <code>hello</code>, so in the Fluent files we would define translations for the <code>hello</code> L10n ID.</p>
+<p>For the <code>en</code> locale you might have:</p>
+<blockquote>
+<p><strong><em>en/main.ftl</em></strong></p>
 <pre><code>hello = Hello
 </code></pre>
+</blockquote>
 <p>And for the <code>es</code> locale you might have:</p>
+<blockquote>
+<p><strong><em>es/main.ftl</em></strong></p>
 <pre><code>hello = Hola
 </code></pre>
-<p>The <code>data-l10n-id</code> is like a contract between the element and its localized content.</p>
-<p>This means that if the localized content changes, then the <code>data-l10n-id</code> must also change. For example, if I want my <code>en</code> message to read <code>Hello there</code> instead of just <code>Hello</code>, I will also need to change the <code>data-l10n-id</code>.</p>
-<pre><code class="language-html">&lt;p id='welcome'
-  data-l10n-id='hello-there'
-&lt;/p&gt;
-</code></pre>
+</blockquote>
+<p>The <code>data-l10n-id</code> is like a social contract between the element and its localized content translation.</p>
+<p>Each ID is unique to a single translation. This means that if the localized translation content ever changes, then you must also provide a new <code>data-l10n-id</code>. For example, if I want my <code>en</code> message to read <code>Hello there</code> instead of just <code>Hello</code>, I will also need to retire the <code>hello</code> L10n ID and provide a new one, such as <code>hello-there</code>.</p>
+<blockquote>
+<p><strong><em>en/main.ftl</em></strong></p>
 <pre><code>hello-there = Hello there
 </code></pre>
+</blockquote>
+<p>This new ID and content would then need to get re-translated for every other locale, such as <code>es</code> in the example above, and the HTML elements will also need to receive the new ID as well.</p>
+<blockquote>
+<p><strong><em>index.html</em></strong></p>
+<pre><code class="language-html">&lt;p id='welcome' data-l10n-id='hello-there'&gt;&lt;/p&gt;
+</code></pre>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="l10n-args"><a class="header" href="#l10n-args">L10n Args</a></h1>
 <p>The <code>data-l10n-args</code> provides a way to supply arguments to your localized content.</p>
 <p>To build on the <code>data-l10n-id</code> example of a welcome message, perhaps we want to be able to provide a name of the person we are welcoming. To do this, we will need to add a <code>data-l10n-args</code> tag in addition to the <code>data-l10n-id</code>.</p>
@@ -171,87 +224,14 @@
 <pre><code># $name - The name of the person to welcome.
 hello = Hello { $name }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="dom-overlays"><a class="header" href="#dom-overlays">DOM Overlays</a></h1>
-<p><em>At the moment, this page is taken verbatim from <a href="https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays">https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays</a></em></p>
-<p>When localizing an HTML document you're likely to encounter two scenarios where the DOM elements may appear in translations:</p>
-<ul>
-<li>
-<p><em>Text-level elements</em>. Localizers may want to use some HTML markup to make the translation correct according to the rules of grammar and spelling. For instance, <code>&lt;em&gt;</code> may be used for words borrowed from foreign languages, <code>&lt;sup&gt;</code> may be used for ordinals or abbreviations, etc.</p>
-</li>
-<li>
-<p><em>Functional elements</em>. Developers may want to pass elements as arguments to the translation and create rich language-agnostic UIs. For instance, they may define an <code>&lt;img&gt;</code> element which should be placed inline inside of the translation. Each language will need to decide where exactly the <code>&lt;img&gt;</code> should go.</p>
-</li>
-</ul>
-<p><code>fluent-dom</code> features a secure overlay logic which:</p>
-<ul>
-<li>allows localizers to use some safe text-level markup in translations, and</li>
-<li>allows developers to pass functional elements as arguments to translations.</li>
-</ul>
-<h2 id="text-level-elements"><a class="header" href="#text-level-elements">Text-Level Elements</a></h2>
-<p>Text-level elements such as <code>&lt;em&gt;</code>, <code>&lt;strong&gt;</code> and <code>&lt;sup&gt;</code>, are considered safe and are in fact often required to build correct translations. <code>fluent-dom</code> always allows these elements to be present in translations. No further nesting is allowed and all attributes defined on these text-level elements are sanitized using a well-defined list of safe attributes.</p>
-<pre><code class="language-properties">ordinals = 1&lt;sup&gt;st&lt;/sup&gt;, 2&lt;sup&gt;nd&lt;/sup&gt;, 3&lt;sup&gt;rd&lt;/sup&gt;, and so on.
-</code></pre>
-<p>The list of text-level elements is defined by the HTML specification in <a href="https://www.w3.org/TR/html52/textlevel-semantics.html">§4.5. Text-level semantics</a>. <code>fluent-dom</code> allows almost all of them by default, with the exception of <code>&lt;a&gt;</code> (which doesn't make much sense without <code>href</code>) and <code>&lt;ruby&gt;</code>, <code>&lt;rt&gt;</code> and <code>&lt;rp&gt;</code> (which require nesting).</p>
-<h2 id="functional-elements"><a class="header" href="#functional-elements">Functional Elements</a></h2>
-<p>Developers may also put child elements (both text-level and others) inside of the element which is the target of the translation. These child elements must be annotated with the <code>data-l10n-name</code> attribute. <code>fluent-dom</code> will look for corresponding child elements defined by the translation and clone them into the final translated result. The cloning preserves functional attributes defined in the source (<code>href</code>, <code>class</code>, <code>src</code>) but destroys any event listeners attached to the child element. Safe attributes found on the matching child element from the translation will be copied to the resulting child.</p>
-<h3 id="img-example"><a class="header" href="#img-example"><code>&lt;img&gt;</code> Example</a></h3>
-<pre><code class="language-html">&lt;p data-l10n-id=&quot;hello-icon&quot;&gt;
-    &lt;img data-l10n-name=&quot;world&quot; src=&quot;world.png&quot;&gt;
-&lt;/p&gt;
-</code></pre>
-<pre><code class="language-properties">hello-icon = Hello, &lt;img data-l10n-name=&quot;world&quot; alt=&quot;world&quot;&gt;!
-</code></pre>
-<p>Result:</p>
-<pre><code class="language-html">&lt;p data-l10n-id=&quot;hello-icon&quot;&gt;
-    Hello, &lt;img data-l10n-name=&quot;world&quot; alt=&quot;world&quot; src=&quot;world.png&quot;&gt;!
-&lt;/p&gt;
-</code></pre>
-<h3 id="a-example"><a class="header" href="#a-example"><code>&lt;a&gt;</code> Example</a></h3>
-<pre><code class="language-html">&lt;span data-l10n-id=&quot;privacy-note&quot;&gt;
-  &lt;a data-l10n-name=&quot;priv&quot; href=&quot;https://www.mozilla.org/privacy&quot; /&gt;
-&lt;/span&gt;
-</code></pre>
-<pre><code class="language-properties">privacy-note = Read our &lt;a data-l10n-name=&quot;priv&quot; title=&quot;Privacy Policy&quot;&gt;privacy policy&lt;/a&gt;.
-</code></pre>
-<p>will produce:</p>
-<pre><code class="language-html">&lt;span data-l10n-id=&quot;privacy-note&quot;&gt;
-  Read our &lt;a data-l10n-name=&quot;priv&quot; href=&quot;https://www.mozilla.org/privacy&quot; title=&quot;Privacy Policy&quot;&gt;privacy policy&lt;/a&gt;.
-&lt;/span&gt;
-</code></pre>
-<h2 id="safety"><a class="header" href="#safety">Safety</a></h2>
-<p>The DOM Overlays logic sanitizes all elements found in the translation before inserting them into the DOM. Only safe text-level elements are allowed by default. Their attributes are also sanitized to only allow safe translatable attributes like <code>title</code> or <code>alt</code>.</p>
-<p>When non-text-level functional elements are used in the translation, like <code>&lt;img&gt;</code>, <code>fluent-dom</code> will only try to match them against the source HTML if both the type and the value of the <code>data-l10n-name</code> attribute match the corresponding element defined in the source.</p>
-<p>This design secures <code>fluent-dom</code> against potentially malicious translations. At the same time it empowers the localizers and the developers to make the localized user experience more complete.</p>
-<h3 id="whitelisting-additional-attributes"><a class="header" href="#whitelisting-additional-attributes">Whitelisting additional attributes</a></h3>
-<p>Developers can allow additional attributes to be set by the translation via the <code>data-l10n-attrs</code> attribute. Its value should be a comma-separated list of attribute names.</p>
-<pre><code class="language-html">&lt;span data-l10n-id=&quot;privacy-note&quot;&gt;
-  &lt;a href=&quot;https://www.mozilla.org/privacy&quot; data-l10n-attrs=&quot;style&quot; /&gt;
-&lt;/span&gt;
-</code></pre>
-<pre><code class="language-properties">privacy-note = Read our &lt;a title=&quot;Privacy Policy&quot; style=&quot;font-weight: bold&quot;&gt;privacy policy&lt;/a&gt;.
-</code></pre>
-<p>will produce:</p>
-<pre><code class="language-html">&lt;span data-l10n-id=&quot;privacy-note&quot;&gt;
-  Read our &lt;a href=&quot;https://www.mozilla.org/privacy&quot; data-l10n-attrs=&quot;style&quot; title=&quot;Privacy Policy&quot; style=&quot;font-weight: bold&quot;&gt;privacy policy&lt;/a&gt;.
-&lt;/span&gt;
-</code></pre>
-<p>Please note that using <code>data-l10n-attrs</code> shifts the responsibility for the safety of the widget onto the developer.</p>
+<p>In the example above, passing in <code>data-l10n-args='{&quot;name:&quot; &quot;world&quot;}'</code> would result in the final translation of <code>Hello world</code>.</p>
+<hr />
 <h2 id="limitations"><a class="header" href="#limitations">Limitations</a></h2>
-<p>The implementation of DOM overlays as of <code>fluent-dom</code> 0.2.0 is subject to the following limitations. We plan to address some of them in the future revisions of the feature.</p>
-<ol>
-<li>
-<p>At the moment the identity of functional elements passed into the translation via <code>data-l10n-name</code> is not preserved. It's thus not possible to add event listeners to them.</p>
-</li>
-<li>
-<p>Nested markup is not allowed in either text-level elements or functional elements.</p>
-</li>
-<li>
-<p>Text content from the translation currently replaces the entire children subtree of functional elements passed into the translation.</p>
-</li>
-<li>
-<p>There's no way to allow additional elements to be defined in translations without putting them in the source HTML as functional elements.</p>
-</li>
-</ol>
+<p>At this time, Fluent DOM is only able to accept numbers and strings as <code>data-l10n-args</code>. It technically also supports dates, since dates can be represented as a number, however there is an open bug (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1611754">Bug1611754</a>) to support dates in a more straightforward way.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started-with-fluent-dom"><a class="header" href="#getting-started-with-fluent-dom">Getting started with Fluent DOM</a></h1>
+<p>This is a small, step-by-step tutorial to show a simple path to get up and running using Fluent in a web project built from scratch.</p>
+<p>We will be using <a href="https://www.npmjs.com/">Node Package Manager (npm)</a> and <a href="https://parceljs.org/">Parcel</a> in this tutorial.</p>
+<p>If you already have <code>npm</code> set up, you can skip to the <a href="./project-setup.html">Project Setup</a> section.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fluentjs"><a class="header" href="#fluentjs">Fluent.js</a></h1>
 <p>Fluent.js is a JavaScript implementation of Project Fluent, a localization framework designed to unleash the expressive power of the natural language.</p>
 <p>Fluent.js allows interaction with <a href="./l10n-id.html"><code>data-l10n-id</code></a> and <a href="./l10n-args.html"><code>data-l10n-args</code></a> through the <a href="./dom-localization.html"><code>DOMLocalization</code></a> class, which is derived from the <a href="localization.html"><code>Localization</code></a> base class.</p>
@@ -391,7 +371,7 @@ Use the <code>data-l10n-id</code> and <code>data-l10n-args</code> attributes to 
 <p>Manually trigger the translation (or re-translation) of a list of elements. Use the <code>data-l10n-id</code> and <code>data-l10n-args</code> attributes to mark up the DOM with information about which translations to use.</p>
 <p>Returns a <code>Promise</code> that gets resolved once the translation is complete.</p>
 </blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started-with-fluent"><a class="header" href="#getting-started-with-fluent">Getting started with Fluent</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started-with-fluent-dom-1"><a class="header" href="#getting-started-with-fluent-dom-1">Getting started with Fluent DOM</a></h1>
 <p>This is a small, step-by-step tutorial to show a simple path to get up and running using Fluent in a web project built from scratch.</p>
 <p>We will be using <a href="https://www.npmjs.com/">Node Package Manager (npm)</a> and <a href="https://parceljs.org/">Parcel</a> in this tutorial.</p>
 <p>If you already have <code>npm</code> set up, you can skip to the <a href="./project-setup.html">Project Setup</a> section.</p>
@@ -620,14 +600,14 @@ getMeta(document.head).available;
 <pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot; /&gt;
-    &lt;meta name=&quot;defaultLanguage&quot; content=&quot;es-MX&quot; /&gt;
-    &lt;meta name=&quot;availableLanguages&quot; content=&quot;en-US, es-MX&quot; /&gt;
-    &lt;link name=&quot;localization&quot; content=&quot;./localization/{locale}/main.ftl&quot; /&gt;
-    &lt;script type=&quot;module&quot; src=&quot;index.js&quot;&gt;&lt;/script&gt;
+    &lt;meta charset='UTF-8' /&gt;
+    &lt;meta name='defaultLanguage' content='es-MX' /&gt;
+    &lt;meta name='availableLanguages' content='en-US, es-MX' /&gt;
+    &lt;link name='localization' content='./localization/{locale}/main.ftl' /&gt;
+    &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1 id=&quot;welcome&quot;&gt;Hi!&lt;/h1&gt;
+    &lt;h1 data-l10n-id='hello' data-l10n-args='{ &quot;name&quot;: &quot;Erik&quot; }'&gt;Hi!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -684,6 +664,87 @@ l10n.translateRoots();
 <p>and now see <strong>Hello!</strong>, as specified in our Fluent file for <code>en-US</code>. You should also be able to change the default language in <code>index.html</code> to <code>es-MX</code> and see <strong>¡Hola!</strong>.</p>
 <hr />
 <p>Congratulations! You've just set up a project from scratch that uses Fluent DOM to localize HTML elements.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dom-overlays"><a class="header" href="#dom-overlays">DOM Overlays</a></h1>
+<p><em>At the moment, this page is taken verbatim from <a href="https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays">https://github.com/projectfluent/fluent.js/wiki/DOM-Overlays</a></em></p>
+<p>When localizing an HTML document you're likely to encounter two scenarios where the DOM elements may appear in translations:</p>
+<ul>
+<li>
+<p><em>Text-level elements</em>. Localizers may want to use some HTML markup to make the translation correct according to the rules of grammar and spelling. For instance, <code>&lt;em&gt;</code> may be used for words borrowed from foreign languages, <code>&lt;sup&gt;</code> may be used for ordinals or abbreviations, etc.</p>
+</li>
+<li>
+<p><em>Functional elements</em>. Developers may want to pass elements as arguments to the translation and create rich language-agnostic UIs. For instance, they may define an <code>&lt;img&gt;</code> element which should be placed inline inside of the translation. Each language will need to decide where exactly the <code>&lt;img&gt;</code> should go.</p>
+</li>
+</ul>
+<p><code>fluent-dom</code> features a secure overlay logic which:</p>
+<ul>
+<li>allows localizers to use some safe text-level markup in translations, and</li>
+<li>allows developers to pass functional elements as arguments to translations.</li>
+</ul>
+<h2 id="text-level-elements"><a class="header" href="#text-level-elements">Text-Level Elements</a></h2>
+<p>Text-level elements such as <code>&lt;em&gt;</code>, <code>&lt;strong&gt;</code> and <code>&lt;sup&gt;</code>, are considered safe and are in fact often required to build correct translations. <code>fluent-dom</code> always allows these elements to be present in translations. No further nesting is allowed and all attributes defined on these text-level elements are sanitized using a well-defined list of safe attributes.</p>
+<pre><code class="language-properties">ordinals = 1&lt;sup&gt;st&lt;/sup&gt;, 2&lt;sup&gt;nd&lt;/sup&gt;, 3&lt;sup&gt;rd&lt;/sup&gt;, and so on.
+</code></pre>
+<p>The list of text-level elements is defined by the HTML specification in <a href="https://www.w3.org/TR/html52/textlevel-semantics.html">§4.5. Text-level semantics</a>. <code>fluent-dom</code> allows almost all of them by default, with the exception of <code>&lt;a&gt;</code> (which doesn't make much sense without <code>href</code>) and <code>&lt;ruby&gt;</code>, <code>&lt;rt&gt;</code> and <code>&lt;rp&gt;</code> (which require nesting).</p>
+<h2 id="functional-elements"><a class="header" href="#functional-elements">Functional Elements</a></h2>
+<p>Developers may also put child elements (both text-level and others) inside of the element which is the target of the translation. These child elements must be annotated with the <code>data-l10n-name</code> attribute. <code>fluent-dom</code> will look for corresponding child elements defined by the translation and clone them into the final translated result. The cloning preserves functional attributes defined in the source (<code>href</code>, <code>class</code>, <code>src</code>) but destroys any event listeners attached to the child element. Safe attributes found on the matching child element from the translation will be copied to the resulting child.</p>
+<h3 id="img-example"><a class="header" href="#img-example"><code>&lt;img&gt;</code> Example</a></h3>
+<pre><code class="language-html">&lt;p data-l10n-id=&quot;hello-icon&quot;&gt;
+    &lt;img data-l10n-name=&quot;world&quot; src=&quot;world.png&quot;&gt;
+&lt;/p&gt;
+</code></pre>
+<pre><code class="language-properties">hello-icon = Hello, &lt;img data-l10n-name=&quot;world&quot; alt=&quot;world&quot;&gt;!
+</code></pre>
+<p>Result:</p>
+<pre><code class="language-html">&lt;p data-l10n-id=&quot;hello-icon&quot;&gt;
+    Hello, &lt;img data-l10n-name=&quot;world&quot; alt=&quot;world&quot; src=&quot;world.png&quot;&gt;!
+&lt;/p&gt;
+</code></pre>
+<h3 id="a-example"><a class="header" href="#a-example"><code>&lt;a&gt;</code> Example</a></h3>
+<pre><code class="language-html">&lt;span data-l10n-id=&quot;privacy-note&quot;&gt;
+  &lt;a data-l10n-name=&quot;priv&quot; href=&quot;https://www.mozilla.org/privacy&quot; /&gt;
+&lt;/span&gt;
+</code></pre>
+<pre><code class="language-properties">privacy-note = Read our &lt;a data-l10n-name=&quot;priv&quot; title=&quot;Privacy Policy&quot;&gt;privacy policy&lt;/a&gt;.
+</code></pre>
+<p>will produce:</p>
+<pre><code class="language-html">&lt;span data-l10n-id=&quot;privacy-note&quot;&gt;
+  Read our &lt;a data-l10n-name=&quot;priv&quot; href=&quot;https://www.mozilla.org/privacy&quot; title=&quot;Privacy Policy&quot;&gt;privacy policy&lt;/a&gt;.
+&lt;/span&gt;
+</code></pre>
+<h2 id="safety"><a class="header" href="#safety">Safety</a></h2>
+<p>The DOM Overlays logic sanitizes all elements found in the translation before inserting them into the DOM. Only safe text-level elements are allowed by default. Their attributes are also sanitized to only allow safe translatable attributes like <code>title</code> or <code>alt</code>.</p>
+<p>When non-text-level functional elements are used in the translation, like <code>&lt;img&gt;</code>, <code>fluent-dom</code> will only try to match them against the source HTML if both the type and the value of the <code>data-l10n-name</code> attribute match the corresponding element defined in the source.</p>
+<p>This design secures <code>fluent-dom</code> against potentially malicious translations. At the same time it empowers the localizers and the developers to make the localized user experience more complete.</p>
+<h3 id="whitelisting-additional-attributes"><a class="header" href="#whitelisting-additional-attributes">Whitelisting additional attributes</a></h3>
+<p>Developers can allow additional attributes to be set by the translation via the <code>data-l10n-attrs</code> attribute. Its value should be a comma-separated list of attribute names.</p>
+<pre><code class="language-html">&lt;span data-l10n-id=&quot;privacy-note&quot;&gt;
+  &lt;a href=&quot;https://www.mozilla.org/privacy&quot; data-l10n-attrs=&quot;style&quot; /&gt;
+&lt;/span&gt;
+</code></pre>
+<pre><code class="language-properties">privacy-note = Read our &lt;a title=&quot;Privacy Policy&quot; style=&quot;font-weight: bold&quot;&gt;privacy policy&lt;/a&gt;.
+</code></pre>
+<p>will produce:</p>
+<pre><code class="language-html">&lt;span data-l10n-id=&quot;privacy-note&quot;&gt;
+  Read our &lt;a href=&quot;https://www.mozilla.org/privacy&quot; data-l10n-attrs=&quot;style&quot; title=&quot;Privacy Policy&quot; style=&quot;font-weight: bold&quot;&gt;privacy policy&lt;/a&gt;.
+&lt;/span&gt;
+</code></pre>
+<p>Please note that using <code>data-l10n-attrs</code> shifts the responsibility for the safety of the widget onto the developer.</p>
+<h2 id="limitations-1"><a class="header" href="#limitations-1">Limitations</a></h2>
+<p>The implementation of DOM overlays as of <code>fluent-dom</code> 0.2.0 is subject to the following limitations. We plan to address some of them in the future revisions of the feature.</p>
+<ol>
+<li>
+<p>At the moment the identity of functional elements passed into the translation via <code>data-l10n-name</code> is not preserved. It's thus not possible to add event listeners to them.</p>
+</li>
+<li>
+<p>Nested markup is not allowed in either text-level elements or functional elements.</p>
+</li>
+<li>
+<p>Text content from the translation currently replaces the entire children subtree of functional elements passed into the translation.</p>
+</li>
+<li>
+<p>There's no way to allow additional elements to be defined in translations without putting them in the source HTML as functional elements.</p>
+</li>
+</ol>
 
                     </main>
 

@@ -17,3 +17,11 @@ And in the Fluent file, we will be able to use the argument within our localized
 # $name - The name of the person to welcome.
 hello = Hello { $name }
 ```
+
+In the example above, passing in `data-l10n-args='{"name:" "world"}'` would result in the final translation of `Hello world`.
+
+---
+
+## Limitations
+
+At this time, Fluent DOM is only able to accept numbers and strings as `data-l10n-args`. It technically also supports dates, since dates can be represented as a number, however there is an open bug ([Bug1611754](https://bugzilla.mozilla.org/show_bug.cgi?id=1611754)) to support dates in a more straightforward way.

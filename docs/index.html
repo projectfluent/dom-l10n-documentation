@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html"><strong aria-hidden="true">3.</strong> L10n Args</a></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">4.</strong> DOM Overlays</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">5.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">5.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">5.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">6.</strong> Getting started with Fluent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="npm.html"><strong aria-hidden="true">6.1.</strong> Installing NPM</a></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">6.2.</strong> Setting up a project</a></li><li class="chapter-item expanded "><a href="fluent-files.html"><strong aria-hidden="true">6.3.</strong> Adding Fluent files</a></li><li class="chapter-item expanded "><a href="using-fluent.html"><strong aria-hidden="true">6.4.</strong> Using Fluent</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="fluent-dom.html"><strong aria-hidden="true">2.</strong> Fluent DOM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.1.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html"><strong aria-hidden="true">2.2.</strong> L10n Args</a></li></ol></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">3.</strong> Getting Started With Fluent DOM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="fluent-js.html"><strong aria-hidden="true">3.1.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">3.1.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">3.1.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">3.2.</strong> Tutorial</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="npm.html"><strong aria-hidden="true">3.2.1.</strong> Installing NPM</a></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">3.2.2.</strong> Setting up a project</a></li><li class="chapter-item expanded "><a href="fluent-files.html"><strong aria-hidden="true">3.2.3.</strong> Adding Fluent files</a></li><li class="chapter-item expanded "><a href="using-fluent.html"><strong aria-hidden="true">3.2.4.</strong> Using Fluent</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">4.</strong> DOM Overlays</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,13 +135,48 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="overview"><a class="header" href="#overview">Overview</a></h1>
-<p>This documentation is intended to be a starting point for anyone looking to understand and learn to use Fluent DOM.</p>
+<p><a href="https://projectfluent.org/">Fluent</a> is a family of localization specifications, implementations and good practices developed by Mozilla.</p>
+<p>This documentation is intended to be a starting point for anyone looking to understand and learn to use Fluent DOM, which is a set of abstractions that allow for localizing content in HTML pages as they relate to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">Document Object Model</a> (DOM).</p>
+<hr />
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>We can specify translations in Fluent (<code>.ftl</code>) files for different languages. Here we specify translations for <code>en-US</code> and <code>es-MX</code>.</p>
+<blockquote>
+<p><strong><em>en-US/main.ftl</em></strong></p>
+<pre><code>hello = Hello { $name }.
+</code></pre>
+</blockquote>
+<blockquote>
+<p><strong><em>es-MX/main.ftl</em></strong></p>
+<pre><code>hello = Hola { $name }.
+</code></pre>
+</blockquote>
+<hr />
+<p>We can then use our Fluent translations to localize the content of elements in the HTML. In this example <code>&lt;h1&gt;</code> element will be translated by Fluent to say <code>&quot;Hola Erik.&quot;</code>, because we specify the <code>defaultLanguage</code> to be <code>es-MX</code>, which matches our translation above.</p>
+<blockquote>
+<p><strong><em>index.html</em></strong></p>
+<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset='UTF-8' /&gt;
+    &lt;meta name='defaultLanguage' content='es-MX' /&gt;
+    &lt;meta name='availableLanguages' content='en-US, es-MX' /&gt;
+    &lt;link name='localization' content='./localization/{locale}/main.ftl' /&gt;
+    &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 data-l10n-id='hello' data-l10n-args='{ &quot;name&quot;: &quot;Erik&quot; }'&gt;Hi!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</blockquote>
+<hr />
+<p>The following sectctions will explain the concepts behind Fluent DOM as well as present a walkthrough tutorial on how to set up a project from scratch that uses Fluent DOM to localize HTML content.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="next" href="l10n-id.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="fluent-dom.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -150,7 +185,7 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="next" href="l10n-id.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="fluent-dom.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
