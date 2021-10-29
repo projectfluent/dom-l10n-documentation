@@ -140,7 +140,7 @@
 <hr />
 <h3 id="constructorresourceids-generatebundles"><a class="header" href="#constructorresourceids-generatebundles"><code>constructor(resourceIds, generateBundles)</code></a></h3>
 <blockquote>
-<p>Creates a new <code>Localization</code> object given a list of <code>resourceIDs</code> and a <code>generateBundles</code> function that returns a generator over <code>FluentBundles</code> when given a list of <code>resourceIDs</code>.</p>
+<p>Creates a new <code>Localization</code> object given a list of <code>resourceIDs</code> and a <code>generateBundles</code> function that returns a generator over <code>FluentBundles</code>.</p>
 <p>The <code>generateBundles</code> function's generator behavior acts as a fallbacking strategy for the availability of fluent resources. Fallbacking allows for translations from a different language to be used if the translation is not available in the desired language. For example, if the Spanish translation is missing, English text could be displayed instead.</p>
 <p>When localizing content in the ideal scenario, the <code>generateBundles</code> function will only ever have to produce one bundle. This would mean that the first bundle had translations for every requested localization.</p>
 <p>If the current bundle in unable to produce a translation, then the generator's next bundle will be retrieved in an attempt to find a translation, and so on.</p>
@@ -149,8 +149,8 @@
 <h3 id="addresourceidsresourceids-eager--false"><a class="header" href="#addresourceidsresourceids-eager--false"><code>addResourceIds(resourceIds, eager = false)</code></a></h3>
 <blockquote>
 <p>Adds resource IDs to this localization object.
-Accepts a boolean for whether to eagerly apply the changes
-with a default value of <code>false</code>.</p>
+Accepts a boolean for whether to eagerly or lazily apply the changes
+with a default value of <code>false</code> (for lazy).</p>
 </blockquote>
 <hr />
 <h3 id="removeresourceidsresourceids"><a class="header" href="#removeresourceidsresourceids"><code>removeResourceIds(resourceIds)</code></a></h3>
@@ -163,12 +163,12 @@ This operation is never eager.</p>
 <blockquote>
 <p>Retrives translations corresponding to the passed keys.
 Keys must be <code>{id, args}</code> objects.</p>
-<p>If all <code>keys</code> have available translations within the current <code>FluentBundle</code>
+<p>If all <code>keys</code> have available translations within the current <code>FluentBundle</code>,
 then no fallbacking will occur. If a translation is missing, the
 localization object will retrieve the next bundle from the <code>generateBundles</code> function and so on.</p>
 <pre><code class="language-JavaScript">docL10n.formatValues([
-  {id: 'hello', args: { who: 'Mary' }},
-  {id: 'hello', args: { who: 'John' }},
+  {id: 'hello', args: { name: 'Mary' }},
+  {id: 'hello', args: { name: 'John' }},
   {id: 'welcome'}
 ]).then(console.log)
 </code></pre>
@@ -178,13 +178,13 @@ localization object will retrieve the next bundle from the <code>generateBundles
 <blockquote>
 <blockquote>
 <p><strong><em>Note:</em></strong></p>
-<p><em>Use this sparingly for one-off messages which do not need to be retranslated when the user change their language preferences, e.g. in notifications.</em></p>
+<p><em>Use this sparingly for one-off messages which do not need to be retranslated when the user changes their language preferences, e.g. in notifications.</em></p>
 </blockquote>
 <p>Retrieves the translation corresponding to the <code>id</code>.</p>
 <p>If passed, <code>args</code> is a simple hash object with a list of variables that will be interpolated in the value of the translation.</p>
 <p>Returns a promise resolving to the translation string.</p>
 <pre><code class="language-JavaScript">docL10n.formatValue(
-  'hello', { who: 'world' }
+  'hello', { name: 'world' }
 ).then(console.log);
 </code></pre>
 </blockquote>

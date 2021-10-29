@@ -144,7 +144,7 @@
 <hr />
 <h3 id="constructorresourceids-generatebundles"><a class="header" href="#constructorresourceids-generatebundles"><code>constructor(resourceIds, generateBundles)</code></a></h3>
 <blockquote>
-<p>Creates a new <code>DOMLocalization</code> object given a list of <code>resourceIDs</code> and a <code>generateBundles</code> function that returns a generator over <code>FluentBundles</code> when given a list of <code>resourceIDs</code>.</p>
+<p>Creates a new <code>DOMLocalization</code> object given a list of <code>resourceIDs</code> and a <code>generateBundles</code> function that returns a generator over <code>FluentBundles</code>.</p>
 <p>The <code>generateBundles</code> function's generator behavior acts as a fallbacking strategy for the availability of fluent resources.</p>
 <p>When localizing content in the ideal scenario, the <code>generateBundles</code> function will only ever have to produce one bundle. This would mean that the first bundle had translations for every requested localization.</p>
 <p>If the current bundle in unable to produce a translation, then the generator's next bundle will be retrieved in an attempt to find a translation, and so on.</p>
@@ -155,7 +155,7 @@
 <p>Set the <a href="./l10n-id.html"><code>data-l10n-id</code></a> and <a href="./l10n-args.html"><code>data-l10n-args</code></a> attributes on a DOM <code>element</code>. <code>DOMLocalization</code> makes use of mutation observers to detect change to <code>data-l10n-*</code> attributes and translate elements asynchronously. <code>setAttributes</code> is a convenience method which allows to translate DOM elements declaratively.</p>
 <p>You should always prefer to use <a href="./l10n-id.html"><code>data-l10n-id</code></a> on elements (statically in HTML or dynamically via <code>setAttributes</code>) over manually retrieving translations with <code>format</code>.  The use of attributes ensures that the elements can be retranslated when the user changes their language preferences.</p>
 <pre><code class="language-JavaScript">localization.setAttributes(
-  document.querySelector('#welcome'), 'hello', { who: 'world' }
+  document.querySelector('#welcome'), 'hello', { name: 'world' }
 );
 </code></pre>
 <p>This will set the following attributes on the <code>#welcome</code> element. The MutationObserver will pick up this change and will localize the element asynchronously.</p>
@@ -204,7 +204,7 @@ localization.getAttributes(
 <blockquote>
 <p>Translate a DOM element or fragment asynchronously using this
 <code>DOMLocalization</code> object.</p>
-<p>Manually trigger the translation (or re-translation) of a DOM fragment.
+<p>Manually trigger the translation (or re-translation) of a <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DOM fragment</a>.
 Use the <code>data-l10n-id</code> and <code>data-l10n-args</code> attributes to mark up the DOM with information about which translations to use.</p>
 <p>Returns a <code>Promise</code> that gets resolved once the translation is complete.</p>
 </blockquote>

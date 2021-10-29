@@ -7,7 +7,7 @@ The `Localization` class is a central high-level API for using Fluent.
 ---
 
 ### `constructor(resourceIds, generateBundles)`
-> Creates a new `Localization` object given a list of `resourceIDs` and a `generateBundles` function that returns a generator over `FluentBundles` when given a list of `resourceIDs`.
+> Creates a new `Localization` object given a list of `resourceIDs` and a `generateBundles` function that returns a generator over `FluentBundles`.
 >
 > The `generateBundles` function's generator behavior acts as a fallbacking strategy for the availability of fluent resources. Fallbacking allows for translations from a different language to be used if the translation is not available in the desired language. For example, if the Spanish translation is missing, English text could be displayed instead.
 >
@@ -19,8 +19,8 @@ The `Localization` class is a central high-level API for using Fluent.
 
 ### `addResourceIds(resourceIds, eager = false)`
 > Adds resource IDs to this localization object.
-> Accepts a boolean for whether to eagerly apply the changes
-> with a default value of `false`.
+> Accepts a boolean for whether to eagerly or lazily apply the changes
+> with a default value of `false` (for lazy).
 
 ---
 
@@ -34,14 +34,14 @@ The `Localization` class is a central high-level API for using Fluent.
 > Retrives translations corresponding to the passed keys.
 > Keys must be `{id, args}` objects.
 >
-> If all `keys` have available translations within the current `FluentBundle`
+> If all `keys` have available translations within the current `FluentBundle`,
 > then no fallbacking will occur. If a translation is missing, the
 > localization object will retrieve the next bundle from the `generateBundles` function and so on.
 >
 > ```JavaScript
 > docL10n.formatValues([
->   {id: 'hello', args: { who: 'Mary' }},
->   {id: 'hello', args: { who: 'John' }},
+>   {id: 'hello', args: { name: 'Mary' }},
+>   {id: 'hello', args: { name: 'John' }},
 >   {id: 'welcome'}
 > ]).then(console.log)
 > ```
@@ -51,7 +51,7 @@ The `Localization` class is a central high-level API for using Fluent.
 ### `formatValue(id, args)`
 >> **_Note:_**
 >>
->> _Use this sparingly for one-off messages which do not need to be retranslated when the user change their language preferences, e.g. in notifications._
+>> _Use this sparingly for one-off messages which do not need to be retranslated when the user changes their language preferences, e.g. in notifications._
 >
 > Retrieves the translation corresponding to the `id`.
 >
@@ -61,6 +61,6 @@ The `Localization` class is a central high-level API for using Fluent.
 >
 > ```JavaScript
 > docL10n.formatValue(
->   'hello', { who: 'world' }
+>   'hello', { name: 'world' }
 > ).then(console.log);
 > ```

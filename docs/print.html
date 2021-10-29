@@ -165,13 +165,13 @@
     &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1 data-l10n-id='hello' data-l10n-args='{ &quot;name&quot;: &quot;Erik&quot; }'&gt;Hi!&lt;/h1&gt;
+    &lt;h1 data-l10n-id='hello' data-l10n-args='{ &quot;name&quot;: &quot;Erik&quot; }'&gt;Localize me!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 </blockquote>
 <hr />
-<p>The following sectctions will explain the concepts behind Fluent DOM as well as present a walkthrough tutorial on how to set up a project from scratch that uses Fluent DOM to localize HTML content.</p>
+<p>The following sections will explain the concepts behind Fluent DOM, as well as present a walkthrough tutorial on how to set up a project from scratch that uses Fluent DOM to localize HTML content.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fluent-dom"><a class="header" href="#fluent-dom">Fluent DOM</a></h1>
 <p>Fluent DOM is an abstraction that is specialized for localizing the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">Document Object Model</a> (DOM).</p>
 <p>There are two primary concepts to understand when working with Fluent DOM:</p>
@@ -199,8 +199,8 @@
 <pre><code>hello = Hola
 </code></pre>
 </blockquote>
-<p>The <code>data-l10n-id</code> is like a social contract between the element and its localized content translation.</p>
-<p>Each ID is unique to a single translation. This means that if the localized translation content ever changes, then you must also provide a new <code>data-l10n-id</code>. For example, if I want my <code>en</code> message to read <code>Hello there</code> instead of just <code>Hello</code>, I will also need to retire the <code>hello</code> L10n ID and provide a new one, such as <code>hello-there</code>.</p>
+<p>The <code>data-l10n-id</code> is like a social contract between the element and its localized content translation. Each ID is unique to a single translation. If translated content needs to be updated, then a new <code>data-l10n-id</code> must be provided. For example, if we want to change our <code>en</code> message from &quot;Hello&quot; to &quot;Hello there,&quot; we need to replace the previous L10n ID <code>hello</code> with a new one, such as <code>hello-there</code>.</p>
+<p>This new ID and content would then require a re-translation in every other locale, such as <code>es</code> in the example above. Additionally, HTML elements will need to use this new ID as well.</p>
 <blockquote>
 <p><strong><em>en/main.ftl</em></strong></p>
 <pre><code>hello-there = Hello there
@@ -213,8 +213,8 @@
 </code></pre>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="l10n-args"><a class="header" href="#l10n-args">L10n Args</a></h1>
-<p>The <code>data-l10n-args</code> provides a way to supply arguments to your localized content.</p>
-<p>To build on the <code>data-l10n-id</code> example of a welcome message, perhaps we want to be able to provide a name of the person we are welcoming. To do this, we will need to add a <code>data-l10n-args</code> tag in addition to the <code>data-l10n-id</code>.</p>
+<p><code>data-l10n-args</code> provides a way to supply arguments to your localized content.</p>
+<p>To build upon the <code>data-l10n-id</code> example of a welcome message, perhaps we want to be able to provide a name of the person we are welcoming. To do this, we will need to add a <code>data-l10n-args</code> tag in addition to the <code>data-l10n-id</code>.</p>
 <pre><code class="language-html">&lt;p id='welcome'
   data-l10n-id='hello'
   data-l10n-args='{&quot;name&quot;: &quot;world&quot;}'&gt;
@@ -229,8 +229,8 @@ hello = Hello { $name }
 <h2 id="limitations"><a class="header" href="#limitations">Limitations</a></h2>
 <p>At this time, Fluent DOM is only able to accept numbers and strings as <code>data-l10n-args</code>. It technically also supports dates, since dates can be represented as a number, however there is an open bug (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1611754">Bug1611754</a>) to support dates in a more straightforward way.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started-with-fluent-dom"><a class="header" href="#getting-started-with-fluent-dom">Getting started with Fluent DOM</a></h1>
-<p>This is a small, step-by-step tutorial to show a simple path to get up and running using Fluent in a web project built from scratch.</p>
-<p>We will be using <a href="https://www.npmjs.com/">Node Package Manager (npm)</a>, <a href="https://parceljs.org/">Parcel</a>, and <a href="https://github.com/projectfluent/fluent.js/">Fluent.js</a> in this tutorial.</p>
+<p>This is a small, step-by-step tutorial showing a simple way to get started with Fluent in a web project built from scratch using <a href="https://github.com/projectfluent/fluent.js/">Fluent.js</a></p>
+<p>We will also be using <a href="https://www.npmjs.com/">Node Package Manager (npm)</a> and <a href="https://parceljs.org/">Parcel</a> in this tutorial.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="background"><a class="header" href="#background">Background</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="low-level-abstractions"><a class="header" href="#low-level-abstractions">Low-level Abstractions</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="mid-level-abstractions"><a class="header" href="#mid-level-abstractions">Mid-level Abstractions</a></h1>
@@ -245,7 +245,7 @@ hello = Hello { $name }
 <hr />
 <h3 id="constructorresourceids-generatebundles"><a class="header" href="#constructorresourceids-generatebundles"><code>constructor(resourceIds, generateBundles)</code></a></h3>
 <blockquote>
-<p>Creates a new <code>Localization</code> object given a list of <code>resourceIDs</code> and a <code>generateBundles</code> function that returns a generator over <code>FluentBundles</code> when given a list of <code>resourceIDs</code>.</p>
+<p>Creates a new <code>Localization</code> object given a list of <code>resourceIDs</code> and a <code>generateBundles</code> function that returns a generator over <code>FluentBundles</code>.</p>
 <p>The <code>generateBundles</code> function's generator behavior acts as a fallbacking strategy for the availability of fluent resources. Fallbacking allows for translations from a different language to be used if the translation is not available in the desired language. For example, if the Spanish translation is missing, English text could be displayed instead.</p>
 <p>When localizing content in the ideal scenario, the <code>generateBundles</code> function will only ever have to produce one bundle. This would mean that the first bundle had translations for every requested localization.</p>
 <p>If the current bundle in unable to produce a translation, then the generator's next bundle will be retrieved in an attempt to find a translation, and so on.</p>
@@ -254,8 +254,8 @@ hello = Hello { $name }
 <h3 id="addresourceidsresourceids-eager--false"><a class="header" href="#addresourceidsresourceids-eager--false"><code>addResourceIds(resourceIds, eager = false)</code></a></h3>
 <blockquote>
 <p>Adds resource IDs to this localization object.
-Accepts a boolean for whether to eagerly apply the changes
-with a default value of <code>false</code>.</p>
+Accepts a boolean for whether to eagerly or lazily apply the changes
+with a default value of <code>false</code> (for lazy).</p>
 </blockquote>
 <hr />
 <h3 id="removeresourceidsresourceids"><a class="header" href="#removeresourceidsresourceids"><code>removeResourceIds(resourceIds)</code></a></h3>
@@ -268,12 +268,12 @@ This operation is never eager.</p>
 <blockquote>
 <p>Retrives translations corresponding to the passed keys.
 Keys must be <code>{id, args}</code> objects.</p>
-<p>If all <code>keys</code> have available translations within the current <code>FluentBundle</code>
+<p>If all <code>keys</code> have available translations within the current <code>FluentBundle</code>,
 then no fallbacking will occur. If a translation is missing, the
 localization object will retrieve the next bundle from the <code>generateBundles</code> function and so on.</p>
 <pre><code class="language-JavaScript">docL10n.formatValues([
-  {id: 'hello', args: { who: 'Mary' }},
-  {id: 'hello', args: { who: 'John' }},
+  {id: 'hello', args: { name: 'Mary' }},
+  {id: 'hello', args: { name: 'John' }},
   {id: 'welcome'}
 ]).then(console.log)
 </code></pre>
@@ -283,13 +283,13 @@ localization object will retrieve the next bundle from the <code>generateBundles
 <blockquote>
 <blockquote>
 <p><strong><em>Note:</em></strong></p>
-<p><em>Use this sparingly for one-off messages which do not need to be retranslated when the user change their language preferences, e.g. in notifications.</em></p>
+<p><em>Use this sparingly for one-off messages which do not need to be retranslated when the user changes their language preferences, e.g. in notifications.</em></p>
 </blockquote>
 <p>Retrieves the translation corresponding to the <code>id</code>.</p>
 <p>If passed, <code>args</code> is a simple hash object with a list of variables that will be interpolated in the value of the translation.</p>
 <p>Returns a promise resolving to the translation string.</p>
 <pre><code class="language-JavaScript">docL10n.formatValue(
-  'hello', { who: 'world' }
+  'hello', { name: 'world' }
 ).then(console.log);
 </code></pre>
 </blockquote>
@@ -303,7 +303,7 @@ localization object will retrieve the next bundle from the <code>generateBundles
 <hr />
 <h3 id="constructorresourceids-generatebundles-1"><a class="header" href="#constructorresourceids-generatebundles-1"><code>constructor(resourceIds, generateBundles)</code></a></h3>
 <blockquote>
-<p>Creates a new <code>DOMLocalization</code> object given a list of <code>resourceIDs</code> and a <code>generateBundles</code> function that returns a generator over <code>FluentBundles</code> when given a list of <code>resourceIDs</code>.</p>
+<p>Creates a new <code>DOMLocalization</code> object given a list of <code>resourceIDs</code> and a <code>generateBundles</code> function that returns a generator over <code>FluentBundles</code>.</p>
 <p>The <code>generateBundles</code> function's generator behavior acts as a fallbacking strategy for the availability of fluent resources.</p>
 <p>When localizing content in the ideal scenario, the <code>generateBundles</code> function will only ever have to produce one bundle. This would mean that the first bundle had translations for every requested localization.</p>
 <p>If the current bundle in unable to produce a translation, then the generator's next bundle will be retrieved in an attempt to find a translation, and so on.</p>
@@ -314,7 +314,7 @@ localization object will retrieve the next bundle from the <code>generateBundles
 <p>Set the <a href="./l10n-id.html"><code>data-l10n-id</code></a> and <a href="./l10n-args.html"><code>data-l10n-args</code></a> attributes on a DOM <code>element</code>. <code>DOMLocalization</code> makes use of mutation observers to detect change to <code>data-l10n-*</code> attributes and translate elements asynchronously. <code>setAttributes</code> is a convenience method which allows to translate DOM elements declaratively.</p>
 <p>You should always prefer to use <a href="./l10n-id.html"><code>data-l10n-id</code></a> on elements (statically in HTML or dynamically via <code>setAttributes</code>) over manually retrieving translations with <code>format</code>.  The use of attributes ensures that the elements can be retranslated when the user changes their language preferences.</p>
 <pre><code class="language-JavaScript">localization.setAttributes(
-  document.querySelector('#welcome'), 'hello', { who: 'world' }
+  document.querySelector('#welcome'), 'hello', { name: 'world' }
 );
 </code></pre>
 <p>This will set the following attributes on the <code>#welcome</code> element. The MutationObserver will pick up this change and will localize the element asynchronously.</p>
@@ -363,7 +363,7 @@ localization.getAttributes(
 <blockquote>
 <p>Translate a DOM element or fragment asynchronously using this
 <code>DOMLocalization</code> object.</p>
-<p>Manually trigger the translation (or re-translation) of a DOM fragment.
+<p>Manually trigger the translation (or re-translation) of a <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DOM fragment</a>.
 Use the <code>data-l10n-id</code> and <code>data-l10n-args</code> attributes to mark up the DOM with information about which translations to use.</p>
 <p>Returns a <code>Promise</code> that gets resolved once the translation is complete.</p>
 </blockquote>
@@ -375,9 +375,8 @@ Use the <code>data-l10n-id</code> and <code>data-l10n-args</code> attributes to 
 <p>Returns a <code>Promise</code> that gets resolved once the translation is complete.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started-with-fluent-dom-1"><a class="header" href="#getting-started-with-fluent-dom-1">Getting started with Fluent DOM</a></h1>
-<p>This is a small, step-by-step tutorial to show a simple path to get up and running using Fluent in a web project built from scratch.</p>
-<p>We will be using <a href="https://www.npmjs.com/">Node Package Manager (npm)</a> and <a href="https://parceljs.org/">Parcel</a> in this tutorial.</p>
-<p>If you already have <code>npm</code> set up, you can skip to the <a href="./project-setup.html">Project Setup</a> section.</p>
+<p>This is a small, step-by-step tutorial showing a simple way to get started with Fluent in a web project built from scratch using <a href="https://github.com/projectfluent/fluent.js/">Fluent.js</a></p>
+<p>We will also be using <a href="https://www.npmjs.com/">Node Package Manager (npm)</a> and <a href="https://parceljs.org/">Parcel</a> in this tutorial.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="installing-npm"><a class="header" href="#installing-npm">Installing NPM</a></h1>
 <p>To install <a href="https://www.npmjs.com/">Node Package Manager (npm)</a>, we will be using <a href="https://github.com/nvm-sh/nvm#installing-and-updating">Node Version Manager (nvm)</a>.</p>
 <p>Navigate to the NVM repository and follow the instructions for the <a href="https://github.com/nvm-sh/nvm#install--update-script">Install &amp; Upate Script</a> section.</p>
@@ -447,7 +446,7 @@ touch src/index.js
     &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1 id='welcome'&gt;Hi!&lt;/h1&gt;
+    &lt;h1 id='welcome'&gt;Localize me!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -474,7 +473,7 @@ touch src/index.js
 <p>Verify that everything is working by running</p>
 <pre><code>npm start
 </code></pre>
-<p>which should serve your html page on <code>localhost</code>. You should see the <code>&lt;h1&gt;</code> element that says <strong>Hi!</strong>.</p>
+<p>which should serve your html page on <code>localhost</code>. You should see the <code>&lt;h1&gt;</code> element that says <strong>Localize me!</strong>.</p>
 <hr />
 <p>In the <a href="./fluent-files.html">next section</a> we will create some Fluent (<code>.ftl</code>) files and cover how to get parcel to add them as assets to your project.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="adding-fluent-files"><a class="header" href="#adding-fluent-files">Adding fluent files</a></h1>
@@ -610,7 +609,7 @@ getMeta(document.head).available;
     &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1 id='welcome'&gt;Hi!&lt;/h1&gt;
+    &lt;h1 id='welcome'&gt;Localize me!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -683,7 +682,7 @@ l10n.translateRoots();
     &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1 id='welcome'&gt;Hi!&lt;/h1&gt;
+    &lt;h1 id='welcome'&gt;Localize me!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -700,7 +699,7 @@ l10n.setAttributes(welcome, &quot;hello&quot;);
 <p>This works fine, but one of the nice things about using Fluent DOM is the abstraction around using <code>data-l10n-id</code> directly in your HTML. Our <code>DOMLocalization</code> object can automatically observe the document and localize the elements who have matching L10n IDs without having to manually query for them in JavaScript.</p>
 <p>To make this change, we are going to remove the <code>id='welcome'</code> from our <code>&lt;h1&gt;</code> element in <code>index.html</code>, and add <code>data-l10n-id='hello'</code>.</p>
 <blockquote>
-<pre><code class="language-HTML">&lt;h1 data-l10n-id='hello'&gt;Hi!&lt;/h1&gt;
+<pre><code class="language-HTML">&lt;h1 data-l10n-id='hello'&gt;Localize me!&lt;/h1&gt;
 </code></pre>
 </blockquote>
 <p>Then we are going to remove the lines in JavaScript that manually query for and modify the <code>&lt;h1&gt;</code> element.</p>

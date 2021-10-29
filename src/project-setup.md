@@ -62,7 +62,7 @@ Populate your `index.html` with some minimal content:
     <script type='module' src='index.js'></script>
   </head>
   <body>
-    <h1 id='welcome'>Hi!</h1>
+    <h1 id='welcome'>Localize me!</h1>
   </body>
 </html>
 ```
@@ -102,7 +102,7 @@ Verify that everything is working by running
 npm start
 ```
 
-which should serve your html page on `localhost`. You should see the `<h1>` element that says **Hi!**.
+which should serve your html page on `localhost`. You should see the `<h1>` element that says **Localize me!**.
 
 ---
 

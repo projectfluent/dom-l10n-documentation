@@ -36,11 +36,11 @@ We can then use our Fluent translations to localize the content of elements in t
 >     <script type='module' src='index.js'></script>
 >   </head>
 >   <body>
->     <h1 data-l10n-id='hello' data-l10n-args='{ "name": "Erik" }'>Hi!</h1>
+>     <h1 data-l10n-id='hello' data-l10n-args='{ "name": "Erik" }'>Localize me!</h1>
 >   </body>
 > </html>
 > ```
 
 ---
 
-The following sectctions will explain the concepts behind Fluent DOM as well as present a walkthrough tutorial on how to set up a project from scratch that uses Fluent DOM to localize HTML content.
+The following sections will explain the concepts behind Fluent DOM, as well as present a walkthrough tutorial on how to set up a project from scratch that uses Fluent DOM to localize HTML content.

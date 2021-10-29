@@ -86,7 +86,7 @@ We are going to add the following line to the `<head>` section of the `index.htm
 >     <script type='module' src='index.js'></script>
 >   </head>
 >   <body>
->     <h1 id='welcome'>Hi!</h1>
+>     <h1 id='welcome'>Localize me!</h1>
 >   </body>
 > </html>
 > ```

@@ -11,7 +11,7 @@ The `DOMLocalization` class is an extension of the [`Localization`](./localizati
 ---
 
 ### `constructor(resourceIds, generateBundles)`
-> Creates a new `DOMLocalization` object given a list of `resourceIDs` and a `generateBundles` function that returns a generator over `FluentBundles` when given a list of `resourceIDs`.
+> Creates a new `DOMLocalization` object given a list of `resourceIDs` and a `generateBundles` function that returns a generator over `FluentBundles`.
 >
 > The `generateBundles` function's generator behavior acts as a fallbacking strategy for the availability of fluent resources.
 >
@@ -28,7 +28,7 @@ The `DOMLocalization` class is an extension of the [`Localization`](./localizati
 >
 > ```JavaScript
 > localization.setAttributes(
->   document.querySelector('#welcome'), 'hello', { who: 'world' }
+>   document.querySelector('#welcome'), 'hello', { name: 'world' }
 > );
 > ```
 >
@@ -86,7 +86,7 @@ ___
 > Translate a DOM element or fragment asynchronously using this
 > `DOMLocalization` object.
 >
-> Manually trigger the translation (or re-translation) of a DOM fragment.
+> Manually trigger the translation (or re-translation) of a [DOM fragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment).
 > Use the `data-l10n-id` and `data-l10n-args` attributes to mark up the DOM with information about which translations to use.
 >
 > Returns a `Promise` that gets resolved once the translation is complete.

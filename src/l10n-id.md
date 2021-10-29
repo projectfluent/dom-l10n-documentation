@@ -22,9 +22,10 @@ And for the `es` locale you might have:
 > hello = Hola
 > ```
 
-The `data-l10n-id` is like a social contract between the element and its localized content translation.
+The `data-l10n-id` is like a social contract between the element and its localized content translation. Each ID is unique to a single translation. If translated content needs to be updated, then a new `data-l10n-id` must be provided. For example, if we want to change our `en` message from "Hello" to "Hello there," we need to replace the previous L10n ID `hello` with a new one, such as `hello-there`.
 
-Each ID is unique to a single translation. This means that if the localized translation content ever changes, then you must also provide a new `data-l10n-id`. For example, if I want my `en` message to read `Hello there` instead of just `Hello`, I will also need to retire the `hello` L10n ID and provide a new one, such as `hello-there`.
+This new ID and content would then require a re-translation in every other locale, such as `es` in the example above. Additionally, HTML elements will need to use this new ID as well.
+
 > **_en/main.ftl_**
 > ```
 > hello-there = Hello there

@@ -13,7 +13,7 @@ This section assumes that you have followed the [Hello World](./tutorial.md) tut
 >     <script type='module' src='index.js'></script>
 >   </head>
 >   <body>
->     <h1 id='welcome'>Hi!</h1>
+>     <h1 id='welcome'>Localize me!</h1>
 >   </body>
 > </html>
 > ```
@@ -33,7 +33,7 @@ This works fine, but one of the nice things about using Fluent DOM is the abstra
 
 To make this change, we are going to remove the `id='welcome'` from our `<h1>` element in `index.html`, and add `data-l10n-id='hello'`.
 > ```HTML
-> <h1 data-l10n-id='hello'>Hi!</h1>
+> <h1 data-l10n-id='hello'>Localize me!</h1>
 > ```
 
 

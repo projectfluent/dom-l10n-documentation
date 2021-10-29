@@ -148,7 +148,7 @@
     &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1 id='welcome'&gt;Hi!&lt;/h1&gt;
+    &lt;h1 id='welcome'&gt;Localize me!&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -165,7 +165,7 @@ l10n.setAttributes(welcome, &quot;hello&quot;);
 <p>This works fine, but one of the nice things about using Fluent DOM is the abstraction around using <code>data-l10n-id</code> directly in your HTML. Our <code>DOMLocalization</code> object can automatically observe the document and localize the elements who have matching L10n IDs without having to manually query for them in JavaScript.</p>
 <p>To make this change, we are going to remove the <code>id='welcome'</code> from our <code>&lt;h1&gt;</code> element in <code>index.html</code>, and add <code>data-l10n-id='hello'</code>.</p>
 <blockquote>
-<pre><code class="language-HTML">&lt;h1 data-l10n-id='hello'&gt;Hi!&lt;/h1&gt;
+<pre><code class="language-HTML">&lt;h1 data-l10n-id='hello'&gt;Localize me!&lt;/h1&gt;
 </code></pre>
 </blockquote>
 <p>Then we are going to remove the lines in JavaScript that manually query for and modify the <code>&lt;h1&gt;</code> element.</p>
