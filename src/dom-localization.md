@@ -13,6 +13,10 @@ The `DOMLocalization` class is an extension of the [`Localization`](./localizati
 ### `constructor(resourceIds, generateBundles)`
 > Creates a new `DOMLocalization` object given a list of `resourceIDs` and a `generateBundles` function that returns a generator over `FluentBundles`.
 >
+> The `resourceIds` are the paths to the fluent files that are used to generate bundles.
+>
+> The `generateBundles` function's generator behavior acts as a fallbacking strategy for the availability of fluent resources. Fallbacking allows for translations from a different language to be used if the translation is not available in the desired language. For example, if the Spanish translation is missing, English text could be displayed instead.
+>
 > The `generateBundles` function's generator behavior acts as a fallbacking strategy for the availability of fluent resources.
 >
 > When localizing content in the ideal scenario, the `generateBundles` function will only ever have to produce one bundle. This would mean that the first bundle had translations for every requested localization.
@@ -37,7 +41,7 @@ The `DOMLocalization` class is an extension of the [`Localization`](./localizati
 > ```html
 > <p id='welcome'
 >   data-l10n-id='hello'
->   data-l10n-args='{"who": "world"}'>
+>   data-l10n-args='{"name": "world"}'>
 > </p>
 > ```
 
@@ -47,12 +51,12 @@ The `DOMLocalization` class is an extension of the [`Localization`](./localizati
 > Get the `data-l10n-*` attributes from a DOM `element`.
 > ```JavaScript
 > localization.setAttributes(
->   document.querySelector('#welcome'), 'hello', { who: 'world' }
+>   document.querySelector('#welcome'), 'hello', { name: 'world' }
 > )
 > localization.getAttributes(
 >   document.querySelector('#welcome')
 > );
-> // -> { id: 'hello', args: { who: 'world' } }
+> // -> { id: 'hello', args: { name: 'world' } }
 > ```
 
 ---

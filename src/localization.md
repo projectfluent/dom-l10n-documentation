@@ -9,6 +9,8 @@ The `Localization` class is a central high-level API for using Fluent.
 ### `constructor(resourceIds, generateBundles)`
 > Creates a new `Localization` object given a list of `resourceIDs` and a `generateBundles` function that returns a generator over `FluentBundles`.
 >
+> The `resourceIds` are the paths to the fluent files that are used to generate bundles.
+>
 > The `generateBundles` function's generator behavior acts as a fallbacking strategy for the availability of fluent resources. Fallbacking allows for translations from a different language to be used if the translation is not available in the desired language. For example, if the Spanish translation is missing, English text could be displayed instead.
 >
 > When localizing content in the ideal scenario, the `generateBundles` function will only ever have to produce one bundle. This would mean that the first bundle had translations for every requested localization.

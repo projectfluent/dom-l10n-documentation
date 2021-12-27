@@ -12,7 +12,7 @@ After running their install script, you should be able to close and re-open your
 nvm --version
 ```
 > ```
-> 0.38.0
+> 0.39.1
 > ```
 
 Next, we will install `npm` through `nvm`.
@@ -27,7 +27,7 @@ Now we can verify that `npm` is installed.
 npm --version
 ```
 > ```
-> 7.24.0
+> 8.3.0
 > ```
 
 ---

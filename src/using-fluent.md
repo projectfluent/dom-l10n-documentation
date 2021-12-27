@@ -38,8 +38,8 @@ Next, we need to add the metadata to the HTML regarding which languages we have 
 Add the following lines to the `<head>` section of your `index.html` file.
 
 ```html
-    <meta name="defaultLanguage" content="en-US" />
-    <meta name="availableLanguages" content="en-US, es-MX" />
+    <meta name='defaultLanguage' content='en-US' />
+    <meta name='availableLanguages' content='en-US, es-MX' />
 ```
 
 ---
@@ -72,7 +72,7 @@ Now that we are able to retrieve the metadata for which locales are supported, w
 We are going to add the following line to the `<head>` section of the `index.html` file:
 
 ```HTML
-<link name="localization" content="./localization/{locale}/main.ftl" />
+<link name='localization' content='./localization/{locale}/main.ftl' />
 ```
 > **_src/index.html_**
 > ```HTML

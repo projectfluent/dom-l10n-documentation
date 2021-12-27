@@ -1,6 +1,6 @@
 # Using L10n ID
 
-This section assumes that you have followed the [Hello World](./tutorial.md) tutorial and that you have a working HTML page that localizes the following content.
+This section assumes that you have followed the tutorial up through the [Using FLuent](./using-fluent.md) section, and that you have a working HTML page that localizes the following content.
 > **_src/index.html_**
 > ```HTML
 > <!DOCTYPE html>
@@ -33,7 +33,7 @@ This works fine, but one of the nice things about using Fluent DOM is the abstra
 
 To make this change, we are going to remove the `id='welcome'` from our `<h1>` element in `index.html`, and add `data-l10n-id='hello'`.
 > ```HTML
-> <h1 data-l10n-id='hello'>Localize me!</h1>
+> <h1 id='welcome' data-l10n-id='hello'>Localize me!</h1>
 > ```
 
 

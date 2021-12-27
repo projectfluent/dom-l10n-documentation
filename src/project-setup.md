@@ -79,7 +79,7 @@ You should now see that `parcel` has been added as a dependency in `package.json
 
 ```json
 "dependencies": {
-  "parcel": "^2.0.0-rc.0",
+  "parcel": "^2.0.1",
 }
 ```
 

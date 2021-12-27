@@ -53,7 +53,7 @@ npm install parcel-reporter-static-files-copy
 > ```json
 > "dependencies": {
 >   "parcel-bundler": "^1.12.5",
->   "parcel-reporter-static-files-copy": "^1.3.0"
+>   "parcel-reporter-static-files-copy": "^1.3.4"
 > }
 > ```
 
