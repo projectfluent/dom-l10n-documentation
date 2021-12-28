@@ -1,14 +1,11 @@
 # Summary
 
 - [Overview](./overview.md)
+- [Background](./background.md)
 - [Fluent DOM](./fluent-dom.md)
     - [L10n ID](./l10n-id.md)
     - [L10n Args](./l10n-args.md)
 - [Getting Started With Fluent DOM](./getting-started.md)
-    - [Background](./background.md)
-        - [Low-level Abstractions](./low-level.md)
-        - [Mid-level Abstractions](./mid-level.md)
-        - [High-level Abstractions](./high-level.md)
     - [Fluent.js APIs](./fluent-js.md)
         - [Localization](./localization.md)
         - [DOMLocalization](./dom-localization.md)
