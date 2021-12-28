@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="fluent-dom.html"><strong aria-hidden="true">2.</strong> Fluent DOM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">2.1.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html"><strong aria-hidden="true">2.2.</strong> L10n Args</a></li></ol></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">3.</strong> Getting Started With Fluent DOM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="background.html"><strong aria-hidden="true">3.1.</strong> Background</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="low-level.html"><strong aria-hidden="true">3.1.1.</strong> Low-level Abstractions</a></li><li class="chapter-item expanded "><a href="mid-level.html"><strong aria-hidden="true">3.1.2.</strong> Mid-level Abstractions</a></li><li class="chapter-item expanded "><a href="high-level.html"><strong aria-hidden="true">3.1.3.</strong> High-level Abstractions</a></li></ol></li><li class="chapter-item expanded "><a href="fluent-js.html"><strong aria-hidden="true">3.2.</strong> Fluent.js</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">3.2.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">3.2.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">3.3.</strong> Hello World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="npm.html"><strong aria-hidden="true">3.3.1.</strong> Installing NPM</a></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">3.3.2.</strong> Setting up a project</a></li><li class="chapter-item expanded "><a href="fluent-files.html"><strong aria-hidden="true">3.3.3.</strong> Adding Fluent files</a></li><li class="chapter-item expanded "><a href="using-fluent.html"><strong aria-hidden="true">3.3.4.</strong> Using Fluent</a></li></ol></li><li class="chapter-item expanded "><a href="using-l10n-id.html"><strong aria-hidden="true">3.4.</strong> Using L10n ID</a></li><li class="chapter-item expanded "><a href="using-l10n-args.html" class="active"><strong aria-hidden="true">3.5.</strong> Using L10n Args</a></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">3.6.</strong> DOM Overlays</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="about-dom-overlays.html"><strong aria-hidden="true">3.6.1.</strong> About DOM Overlays</a></li><li class="chapter-item expanded "><a href="using-dom-overlays.html"><strong aria-hidden="true">3.6.2.</strong> Using DOM Overlays</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="background.html"><strong aria-hidden="true">2.</strong> Background</a></li><li class="chapter-item expanded "><a href="fluent-dom.html"><strong aria-hidden="true">3.</strong> Fluent DOM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="l10n-id.html"><strong aria-hidden="true">3.1.</strong> L10n ID</a></li><li class="chapter-item expanded "><a href="l10n-args.html"><strong aria-hidden="true">3.2.</strong> L10n Args</a></li></ol></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started With Fluent DOM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="fluent-js.html"><strong aria-hidden="true">4.1.</strong> Fluent.js APIs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="localization.html"><strong aria-hidden="true">4.1.1.</strong> Localization</a></li><li class="chapter-item expanded "><a href="dom-localization.html"><strong aria-hidden="true">4.1.2.</strong> DOMLocalization</a></li></ol></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">4.2.</strong> Tutorial</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="npm.html"><strong aria-hidden="true">4.2.1.</strong> Installing NPM</a></li><li class="chapter-item expanded "><a href="project-setup.html"><strong aria-hidden="true">4.2.2.</strong> Setting up a project</a></li><li class="chapter-item expanded "><a href="fluent-files.html"><strong aria-hidden="true">4.2.3.</strong> Adding Fluent files</a></li><li class="chapter-item expanded "><a href="using-fluent.html"><strong aria-hidden="true">4.2.4.</strong> Using Fluent</a></li><li class="chapter-item expanded "><a href="using-l10n-id.html"><strong aria-hidden="true">4.2.5.</strong> Using L10n ID</a></li><li class="chapter-item expanded "><a href="using-l10n-args.html" class="active"><strong aria-hidden="true">4.2.6.</strong> Using L10n Args</a></li></ol></li><li class="chapter-item expanded "><a href="dom-overlays.html"><strong aria-hidden="true">4.3.</strong> DOM Overlays</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,6 +135,78 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="using-l10n-args"><a class="header" href="#using-l10n-args">Using L10n Args</a></h1>
+<p>This section assumes that you have followed the tutorial up through the <a href="./using-l10n-id.html">Using L10n ID</a> 
+section, and that you have a working HTML page that localizes the following content.</p>
+<blockquote>
+<p><strong><em>src/index.html</em></strong></p>
+<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset='UTF-8' /&gt;
+    &lt;meta name='defaultLanguage' content='es-MX' /&gt;
+    &lt;meta name='availableLanguages' content='en-US, es-MX' /&gt;
+    &lt;link name='localization' content='./localization/{locale}/main.ftl' /&gt;
+    &lt;script type='module' src='index.js'&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 id='welcome' data-l10n-id='hello'&gt;Localize me!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</blockquote>
+<hr />
+<p>We are now going to allow our localized welcome message to take in a variable as an argument.</p>
+<p>In each of the two fluent files, we are going to add a comment describing the variable
+in addition to adding the variable into our localized messages.</p>
+<blockquote>
+<p><strong><em>static/localization/en-US/main.ftl</em></strong></p>
+<pre><code># Variables:
+#  $name (String): the name of the person to greet.
+hello = Hello { $name }!
+</code></pre>
+</blockquote>
+<blockquote>
+<p><strong><em>static/localization/en-US/main.ftl</em></strong></p>
+<pre><code># Variables:
+#  $name (String): the name of the person to greet.
+hello = ¡Hola { $name }!
+</code></pre>
+</blockquote>
+<hr />
+<p>Now, when we run the program, we will still see our localized message for our locale, but since
+Fluent doesn't have any default value for this variable, it will just passthrough the variable name.</p>
+<pre><code>¡Hola ⁨{$name}⁩!
+</code></pre>
+<p>This is intended behavior if Fluent is unable to find any values to match the variable for this message.</p>
+<p>To fix this, we can add a default value in the HTML via the <code>data-l10n-args</code> attribute:</p>
+<blockquote>
+<p><strong><em>src/index.html</em></strong></p>
+<pre><code class="language-HTML">&lt;h1 id='welcome' data-l10n-id='hello' data-l10n-args='{&quot;name&quot;: &quot;world&quot;}'&gt;Localize me!&lt;/h1&gt;
+</code></pre>
+</blockquote>
+<p>Now, when our DOMLocalization is translating this element, it will see the default argument for <code>$name</code>
+and provide the value <code>&quot;world&quot;</code> to the localized message.</p>
+<p>When we run the program again, we should now see:</p>
+<pre><code>¡Hola ⁨world⁩!
+</code></pre>
+<hr />
+<p>We can also pass in a new variable to the localized message via JavaScript.</p>
+<p>To pass in a new variable we will call the <code>setAttributes()</code> function to pass in a new argument
+to the element before we call <code>translateRoots()</code>.</p>
+<blockquote>
+<p><strong><em>src/index.js</em></strong></p>
+<pre><code class="language-JavaScript">const element = document.getElementById('welcome');
+l10n.setAttributes(
+  element, 'hello', { name: 'Erik' }
+);
+l10n.translateRoots();
+</code></pre>
+</blockquote>
+<p>Now, when we run the program, we should see that our element was localized with the new, non-default argument.</p>
+<pre><code>¡Hola ⁨Erik⁩!
+</code></pre>
+<hr />
+<p>Congratulations! You are now localizing an HTML page utilizing Fluent DOM with <code>data-l10n-id</code> and <code>data-l10n-args</code>.</p>
 
                     </main>
 
