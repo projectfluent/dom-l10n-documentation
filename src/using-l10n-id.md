@@ -21,6 +21,7 @@ This section assumes that you have followed the tutorial up through the [Using F
 ---
 
 In our current implementation we are using JavaScript to query for the `<h1>` element through its identifier (`id='welcome'`). Then we are using our `DOMLocalization` object to set this element's attributes to `hello` to match the `data-l10n-id` that is specified in our Fluent (`.ftl`) files.
+> **_src/index.js_**
 > ```JavaScript
 > const welcome = document.getElementById("welcome");
 > ...
@@ -32,13 +33,14 @@ In our current implementation we are using JavaScript to query for the `<h1>` el
 This works fine, but one of the nice things about using Fluent DOM is the abstraction around using `data-l10n-id` directly in your HTML. Our `DOMLocalization` object can automatically observe the document and localize the elements who have matching L10n IDs without having to manually query for them in JavaScript.
 
 To make this change, we are going to remove the `id='welcome'` from our `<h1>` element in `index.html`, and add `data-l10n-id='hello'`.
-> ```HTML
-> <h1 id='welcome' data-l10n-id='hello'>Localize me!</h1>
-> ```
+> **_src/index.html_**
+> > ```HTML
+> > <h1 id='welcome' data-l10n-id='hello'>Localize me!</h1>
+> > ```
 
 
 Then we are going to remove the lines in JavaScript that manually query for and modify the `<h1>` element.
-> **_remove commented lines_**
+> **_src/index.js_**
 > ```JavaScript
 > //const welcome = document.getElementById("welcome");
 > //console.log(welcome);

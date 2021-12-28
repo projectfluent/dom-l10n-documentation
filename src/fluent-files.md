@@ -10,26 +10,28 @@ Now that we have a working Parcel setup, we need to add some fluent files. We wi
 
 In this tutorial, we will only create paths for the `en-US` and `es-MX` locales.
 
-```
-mkdir -p static/localization/en-US
-touch static/localization/en-US/main.ftl
-mkdir static/localization/es-MX
-touch static/localization/es-MX/main.ftl
-```
+> **_terminal_**
 > ```
-> fluent-playground
-> ├── src
-> │  ├── index.html
-> │  └── index.js
-> ├── static
-> │  └── localization
-> │     ├── en-US
-> │     │  └── main.ftl
-> │     └── es-MX
-> │        └── main.ftl
-> ├── package-lock.json
-> └── package.json
+> mkdir -p static/localization/en-US
+> touch static/localization/en-US/main.ftl
+> mkdir static/localization/es-MX
+> touch static/localization/es-MX/main.ftl
 > ```
+> > **_tree view_**
+> > ```
+> > fluent-playground
+> > ├── src
+> > │  ├── index.html
+> > │  └── index.js
+> > ├── static
+> > │  └── localization
+> > │     ├── en-US
+> > │     │  └── main.ftl
+> > │     └── es-MX
+> > │        └── main.ftl
+> > ├── package-lock.json
+> > └── package.json
+> > ```
 
 Then we will populate our `main.ftl` files with our localized message using `hello` as our `data-l10n-id`.
 
@@ -47,45 +49,50 @@ Then we will populate our `main.ftl` files with our localized message using `hel
 
 Next we will need to install a Parcel plugin to copy over our static files to our project directory, then verify that it is added to your `package.json`.
 
-```
-npm install parcel-reporter-static-files-copy
-```
-> ```json
-> "dependencies": {
->   "parcel-bundler": "^1.12.5",
->   "parcel-reporter-static-files-copy": "^1.3.4"
-> }
+> **_terminal_**
 > ```
+> npm install parcel-reporter-static-files-copy
+> ```
+> > **_package.json_**
+> > ```json
+> > "dependencies": {
+> >   "parcel-bundler": "^1.12.5",
+> >   "parcel-reporter-static-files-copy": "^1.3.4"
+> > }
+> > ```
 
 Finally, in order to enable the static file copy, we need to create a `.parcelrc` file and add a few lines to it.
-```
-touch .parcelrc
-```
-> **_.parcelrc_**
+
+> **_terminal_**
 > ```
-> {
->   "extends": ["@parcel/config-default"],
->   "reporters": ["...", "parcel-reporter-static-files-copy"]
-> }
+> touch .parcelrc
 > ```
+> > **_.parcelrc_**
+> > ```
+> > {
+> >   "extends": ["@parcel/config-default"],
+> >   "reporters": ["...", "parcel-reporter-static-files-copy"]
+> > }
+> > ```
 
 ---
 
 Now when we run `npm start`, Parcel should build our `dist` directory with our assets included.
 
-```
-.
-├── dist
-│  ├── localization
-│  │  ├── en-US
-│  │  │  └── main.ftl
-│  │  └── es-MX
-│  │     └── main.ftl
-│  ├── index.html
-│  ├── src.e31bb0bc.js
-│  └── src.e31bb0bc.js.map
-...
-```
+> **_tree view_**
+> ```
+> fluent-playground
+> ├── dist
+> │  ├── localization
+> │  │  ├── en-US
+> │  │  │  └── main.ftl
+> │  │  └── es-MX
+> │  │     └── main.ftl
+> │  ├── index.html
+> │  ├── src.e31bb0bc.js
+> │  └── src.e31bb0bc.js.map
+> ...
+> ```
 
 ---
 

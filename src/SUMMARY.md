@@ -9,7 +9,7 @@
         - [Low-level Abstractions](./low-level.md)
         - [Mid-level Abstractions](./mid-level.md)
         - [High-level Abstractions](./high-level.md)
-    - [Fluent.js](./fluent-js.md)
+    - [Fluent.js APIs](./fluent-js.md)
         - [Localization](./localization.md)
         - [DOMLocalization](./dom-localization.md)
     - [Tutorial](./tutorial.md)

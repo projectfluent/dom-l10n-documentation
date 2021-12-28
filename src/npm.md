@@ -8,27 +8,32 @@ Note that their examples pipe to `bash`. If you are using another shell, such as
 
 After running their install script, you should be able to close and re-open your terminal and verify that it was installed correctly by checking the version.
 
-```
-nvm --version
-```
+> **_terminal_**
 > ```
-> 0.39.1
+> nvm --version
 > ```
+> > ```
+> > 0.39.1
+> > ```
 
 Next, we will install `npm` through `nvm`.
 
-```
-nvm install node
-```
+> **_terminal_**
+>
+> ```
+> nvm install node
+> ```
 
 Now we can verify that `npm` is installed.
 
-```
-npm --version
-```
+> **_terminal_**
+>
 > ```
-> 8.3.0
+> npm --version
 > ```
+> > ```
+> > 8.3.0
+> > ```
 
 ---
 
